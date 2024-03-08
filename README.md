@@ -10,3 +10,5 @@ Resources available:
 -  Metal builds for MacOS 11.0+: https://github.com/smartappli/llama-cpp-python-cuBLAS-wheels/releases/tag/metal
 
 2. Quantized models (GGUF files) : https://alumniumonsac-my.sharepoint.com/:f:/g/personal/532807_umons_ac_be/Eqq5KOeq3yxCmGhUYpbqHBwBFRYjRg5XjqsUUnlYvXoOOA?e=lK8MAn
+
+3. Serge Chat: https://github.com/serge-chat/serge
