@@ -12,3 +12,13 @@ Resources available:
 2. Quantized models (GGUF files) : https://alumniumonsac-my.sharepoint.com/:f:/g/personal/532807_umons_ac_be/Eqq5KOeq3yxCmGhUYpbqHBwBFRYjRg5XjqsUUnlYvXoOOA?e=lK8MAn
 
 3. Serge Chat: https://github.com/serge-chat/serge
+
+🐳 Docker:
+```bash
+docker run -d \
+    --name serge \
+    -v weights:/usr/src/app/weights \
+    -v datadb:/data/db/ \
+    -p 8008:8008 \
+    ghcr.io/serge-chat/serge:latest
+```
