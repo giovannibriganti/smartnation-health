@@ -4,7 +4,8 @@ __pycache__/
 *$py.class
 
 # Local files
-data_in
+uploaded
+extracted
 
 # C extensions
 *.so

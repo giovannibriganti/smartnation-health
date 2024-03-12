@@ -2,5 +2,5 @@
 
 Run the app:
 ```bash
-streamlit run test.py
+streamlit run ui_feed_db.py
 ```
