@@ -1,0 +1,29 @@
+Nom du patient : Marie Dubois
+Âge : 40 ans
+Sexe : Féminin
+Poids : 65 kg
+Taille : 1,65 m
+
+Antécédents médicaux :
+
+Asthme depuis l'enfance, sous traitement bronchodilatateur et corticostéroïde inhalé.
+Allergies saisonnières aux pollens et aux acariens.
+Obésité modérée, avec un indice de masse corporelle (IMC) de 30.
+Symptômes actuels :
+
+Essoufflement, aggravé par l'effort et la position couchée.
+Toux sèche persistante, surtout la nuit.
+Sifflements respiratoires intermittents.
+Éternuements fréquents, démangeaisons nasales et écoulement nasal clair.
+Fatigue générale et sensation de faiblesse.
+Diagnostic probable :
+Marie Dubois présente des symptômes compatibles avec un asthme mal contrôlé et des allergies saisonnières. Son obésité peut également aggraver sa fonction respiratoire en augmentant la pression sur ses voies respiratoires.
+
+Plan de prise en charge :
+
+Évaluation de la fonction pulmonaire à l'aide de tests spirométriques pour évaluer le degré d'obstruction des voies respiratoires.
+Optimisation du traitement de l'asthme, comprenant un ajustement des doses de bronchodilatateurs à action rapide et de corticostéroïdes inhalés, ainsi que l'ajout éventuel d'antileucotriènes ou d'anticorps monoclonaux anti-immunoglobuline E (omalizumab) selon la gravité de l'asthme.
+Prescription d'antihistaminiques et de corticostéroïdes nasaux pour le traitement des allergies saisonnières.
+Encouragement à la perte de poids progressive à travers un régime alimentaire équilibré et une augmentation de l'activité physique, adaptée à l'état de santé de la patiente.
+Suivi :
+Marie Dubois devrait être suivie régulièrement par son médecin pour évaluer sa réponse au traitement, surveiller ses symptômes et ajuster son plan thérapeutique en conséquence. Une éducation du patient sur la gestion de l'asthme, des allergies et de l'obésité est essentielle pour améliorer sa qualité de vie et réduire le risque de complications respiratoires.
