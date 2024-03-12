@@ -1,0 +1,51 @@
+# Description de la tâche
+
+**Objectif** : À partir des données fournies concernant un patient, vous devez générer un résumé structuré sous format JSON. Ce résumé doit inclure des informations précises sur le patient, détaillées comme suit :
+
+```json
+{
+  "age": "Âge du patient en années",
+  "height": "Taille du patient en mètres",
+  "weight": "Poids du patient en kilogrammes",
+  "bmi": "Indice de masse corporelle (IMC) calculé du patient",
+  "diagnoses": "Liste des diagnostics médicaux établis pour le patient",
+  "allergies": "Liste des allergies connues du patient"
+}
+```
+
+**Instructions spécifiques** :
+
+- En l'absence d'information définitive ou face à une incertitude, veuillez saisir la valeur "null" pour les champs à valeur unique (comme `age`, `height`, `weight`, `bmi`) et une liste vide (`[]`) pour les champs pouvant contenir plusieurs éléments (comme `diagnoses`, `allergies`).
+- Votre réponse doit être formulée en français.
+- Merci de vous concentrer exclusivement sur la fourniture du résumé demandé, sans inclure d'informations supplémentaires.
+
+Si les données du patient sont les suivantes:
+
+```
+Patient, 34 ans, présente un historique de réactions allergiques à la pénicilline et aux noix. IMC de 22.86, poids dans une plage normale pour une hauteur de 1.75m. Le poids enregistré 70kg. Hypertension et le diabète 2.
+```
+
+Votre réponse sera la suivante:
+
+```json
+{
+  "age": 34,
+  "height": 1.75,
+  "weight": 70,
+  "bmi": 22.86,
+  "diagnoses": [
+    "Hypertension",
+    "Diabète de type 2"
+  ],
+  "allergies": [
+    "Pénicilline",
+    "Noix"
+  ]
+}
+```
+
+Si les données du patient sont les suivantes:
+
+{data}
+
+Votre réponse sera la suivante:
