@@ -1,10 +1,15 @@
 import os
-import streamlit as st
+import pathlib
 import uuid
+
+import streamlit as st
+
 from utils import FileProcessor
 
 UPLOAD_FOLDER = "uploaded"
 TXT_FOLDER = "extracted"
+
+ROOT_PATH = pathlib.Path(__file__).parent
 
 
 class FeedDb:
@@ -13,22 +18,17 @@ class FeedDb:
             st.session_state["folder_name"] = str(uuid.uuid4())
 
         self.folder_name = st.session_state["folder_name"]
-        self.save_path = os.path.join(UPLOAD_FOLDER, self.folder_name)
-        self.extract_path = os.path.join(TXT_FOLDER, self.folder_name)
+        self.save_path = ROOT_PATH / UPLOAD_FOLDER / self.folder_name
+        self.extract_path = ROOT_PATH / TXT_FOLDER / self.folder_name
         self.uploaded_local_paths = []
 
     def save_uploaded_files(self):
-        if not os.path.exists(self.save_path):
-            os.makedirs(self.save_path)
-            os.makedirs(self.extract_path)
+        self.save_path.mkdir(exist_ok=True, parents=True)
 
         for uploaded_file in self.uploaded_files:
             ext = os.path.splitext(uploaded_file.name)[-1]
-            file_name = os.path.join(self.save_path, str(uuid.uuid4()) + ext)
-            with open(
-                file_name,
-                "wb",
-            ) as f:
+            file_name = self.save_path / (str(uuid.uuid4()) + ext)
+            with file_name.open("wb") as f:
                 f.write(uploaded_file.getbuffer())
                 self.uploaded_local_paths.append(file_name)
 
@@ -42,20 +42,25 @@ class FeedDb:
         st.title("Feed Database")
         self.uploaded_files = st.file_uploader(
             "Upload your files",
-            type=["pdf", "txt", "docx", "doc"],
+            type=[".zip"],
             accept_multiple_files=True,
         )
 
         if self.uploaded_files:
             if st.button("Create Database"):
                 self.save_uploaded_files()
-                self.extract_text()
+                # self.extract_text()
+
+        """Extract text from uploaded files and create markdown."""
 
     def extract_text(self):
+        self.extract_path.mkdir(exist_ok=True, parents=True)
         if self.uploaded_local_paths:
             processor = FileProcessor(self.uploaded_local_paths)
             processor.process_files(self.extract_path)
             st.info("Markdown created successfully")
+
+        """Run the app."""
 
     def run(self):
         self.create_app()
