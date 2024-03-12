@@ -23,11 +23,14 @@ class FeedDb:
             os.makedirs(self.extract_path)
 
         for uploaded_file in self.uploaded_files:
-            with open(os.path.join(self.save_path, uploaded_file.name), "wb") as f:
+            ext = os.path.splitext(uploaded_file.name)[-1]
+            file_name = os.path.join(self.save_path, str(uuid.uuid4()) + ext)
+            with open(
+                file_name,
+                "wb",
+            ) as f:
                 f.write(uploaded_file.getbuffer())
-                self.uploaded_local_paths.append(
-                    os.path.join(self.save_path, uploaded_file.name)
-                )
+                self.uploaded_local_paths.append(file_name)
 
         st.success(
             f"Successfully saved {len(self.uploaded_files)} files to {self.save_path}"

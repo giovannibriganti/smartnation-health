@@ -38,8 +38,8 @@ class FileProcessor:
             text = file.read()
         return text
 
-    def save_text(self, text, markdown_path):
-        with open(markdown_path, "w") as file:
+    def save_text(self, text, save_path):
+        with open(save_path, "w") as file:
             file.write(text)
 
     def process_files(self, save_path):
@@ -54,7 +54,7 @@ class FileProcessor:
                 print(f"Unsupported file type: {file_path}")
                 continue
 
-            filename = os.path.split(file_path)[-1] + ".txt"
+            filename = os.path.splitext(os.path.basename(file_path))[0] + ".txt"
 
             markdown_path = os.path.join(save_path, filename)
             self.save_text(text, markdown_path)
