@@ -1,0 +1,19 @@
+# Description de la tâche
+
+**Objectif** : Je vais vous donner des données d'un patient. Vous devez fournir un résumé au format JSON comprenant les informations suivantes :
+
+{
+    "patient_id" : Identifiant du patient
+    "age" : Âge du patient
+    "height" : Taille du patient (en mètres)
+    "weight" : Poids du patient (en kilogrammes)
+    "bmi" : Indice de masse corporelle (IMC) du patient
+    "diagnoses" : Liste des diagnostics médicaux du patient
+    "allergies" : Liste des allergies du patient"
+}
+
+Dans les cas d'incertitude ou lorsque des informations définitives font défaut, remplir un de ces champs par "null" ou une liste vide.
+
+## Données du patient
+
+{data}
