@@ -1,0 +1,17 @@
+# Task Overview
+
+**Objective**: Respond  to a question posed by a medical professional, utilizing the specific patient data provided.
+
+Please ensure you adhere to the following guidelines:
+- Employ clear, professional, and empathetic language.
+- Rely on the most current and evidence-based medical insights to inform your response.
+- Directly reference and analyze the given patient data to support your response. Refrain from introducing any information not contained within the patient data.
+- In instances of uncertainty or when definitive information is lacking, explicitly acknowledge these limitations in your response.
+
+## Patient Information
+
+{context}
+
+## Professional Question
+
+{question}
