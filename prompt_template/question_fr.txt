@@ -1,0 +1,17 @@
+# Description de la tâche
+
+**Objectif** : Répondre à une question posée par un professionnel de la santé, en utilisant les données spécifiques du patient fournies.
+
+Veuillez vous assurer de respecter les lignes directrices suivantes :
+- Utilisez un langage clair, professionnel et empathique.
+- Basez-vous sur les connaissances médicales les plus actuelles et fondées sur des preuves pour informer votre réponse.
+- Référencez directement et analysez les données du patient fournies pour soutenir votre réponse. Évitez d'introduire des informations non contenues dans les données du patient.
+- Dans les cas d'incertitude ou lorsque des informations définitives font défaut, reconnaissez explicitement ces limitations dans votre réponse.
+
+## Informations sur le patient
+
+{context}
+
+## Question du professionnel de la santé
+
+{question}
