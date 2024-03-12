@@ -9,7 +9,7 @@
   "weight": "Poids du patient en kilogrammes",
   "bmi": "Indice de masse corporelle (IMC) calculé du patient",
   "diagnoses": "Liste des diagnostics médicaux établis pour le patient",
-  "allergies": "Liste des allergies connues du patient"
+  "allergies": "Liste des reáctions allergiques connues du patient"
 }
 ```
 
