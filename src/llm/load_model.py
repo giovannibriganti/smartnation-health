@@ -1,4 +1,7 @@
 from ctransformers import AutoModelForCausalLM
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_openai import AzureChatOpenAI
+import json
 
 
 def load(backend: str) -> str:
@@ -14,7 +17,16 @@ def load(backend: str) -> str:
 
 
 def load_gpt35turbo():
-    pass
+    with open(".secrets/azure.json") as f:
+        secrets = json.loads(f.read())
+    return AzureChatOpenAI(
+        # openai_api_type=API_TYPE,
+        # deployment_name=azure_openai_deployment_name,
+        api_version=secrets["version"],
+        openai_api_key=secrets["key"],
+        azure_endpoint=secrets["endpoint"],
+        # temperature=azure_openai_temperature
+    )
 
 
 def load_mistral():
