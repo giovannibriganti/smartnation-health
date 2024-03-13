@@ -1,5 +1,9 @@
 # Instructions to run the application on Mac
 
+Author: Abhishek Sakhuja
+Date: 13th March 2024
+Location: BE
+
 ## 1. Install MongoDB:
 
 brew tap mongodb/brew
