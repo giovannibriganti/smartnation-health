@@ -17,19 +17,22 @@ ASSETS_PATH = ROOT_PATH / "assets"
 
 BACKEND_PATH = ROOT_PATH.parent / "src"
 sys.path.append(str(BACKEND_PATH))
-import load_data
+import load_data  # noqa
 
 
 class FeedDb:
     def __init__(self):
         self.save_path = ROOT_PATH / TXT_FOLDER
 
-        st.set_page_config(page_icon="📄", layout="wide", page_title="SmartNation")
+        st.set_page_config(page_icon="📄", layout="wide",
+                           page_title="SmartNation")
 
         if not "upload_done" in st.session_state:
             st.session_state.upload_done = False
+
         if not "uploading" in st.session_state:
             st.session_state.uploading = False
+
         if not "upload_id" in st.session_state:
             st.session_state.upload_id = 0
         if not "uploaded_files" in st.session_state:
@@ -91,12 +94,45 @@ class FeedDb:
             st.success("Base de donnée générée")
             st.session_state.upload_done = False
 
+        self.make_footer(ASSETS_PATH)
+
     def extract_text(self, temp_dir):
         """Extract text from uploaded files and create markdown."""
         self.save_path.mkdir(exist_ok=True, parents=True)
 
         processor = FileProcessor(temp_dir)
         return processor.process_files(self.save_path)
+
+    def make_footer(self, assets_path: pathlib.Path):
+        """Create the footer."""
+        st.markdown(
+            """
+            ---
+            <div style="text-align: center;">
+                <p> Vivalia's Hackathon </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        cols = st.columns(
+            5)  # Adjust the number of columns based on the number of images
+        images = [
+            ('logo_bosa.png', 100),
+            ('logo_ai4belgium.jpeg', 200),
+            ('logo_spf_fr_nl.svg', 200),
+            ('logo_vivalia.svg', 200),
+            ('logo_umons.svg', 200),
+            ('logo_uliege_faculte_medecine.png', 200),
+            ('logo_isia.svg', 200),
+            ('logo_nttdata.png', 200),
+        ]
+
+        # Display each image in a column
+        for index, column in enumerate(cols):
+            with column:
+                logo_path = str(assets_path / images[index][0])
+                logo_width = images[index][1]
+                st.image(logo_path, width=logo_width)
 
     def run(self):
         """Run the app."""
