@@ -1,6 +1,7 @@
 import os
 import fitz  # PyMuPDF
 from docx import Document
+from langchain_community.document_loaders import PyPDFLoader, TextLoader
 
 
 class FileProcessor:
@@ -20,10 +21,12 @@ class FileProcessor:
         self.file_paths = file_paths
 
     def extract_text_from_pdf(self, pdf_path):
+        loader = PyPDFLoader(pdf_path)
+        pages = loader.load()
         text = ""
-        with fitz.open(pdf_path) as doc:
-            for page in doc:
-                text += page.get_text()
+
+        for page in pages:
+            text += page.page_content + "\n"
         return text
 
     def extract_text_from_docx(self, docx_path):
@@ -34,8 +37,8 @@ class FileProcessor:
         return text
 
     def extract_text_from_txt(self, txt_path):
-        with open(txt_path, "r") as file:
-            text = file.read()
+        loader = TextLoader(txt_path)
+        text = loader.load()[0].page_content
         return text
 
     def save_text(self, text, save_path):
