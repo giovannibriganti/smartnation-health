@@ -149,7 +149,7 @@ class Chatbot:
                         self.send_question(question)
         
         if new_id or st.session_state.new_id:
-            st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
+            st.session_state.messages = [{"role": "assistant", "content": "Comment puis-je vous aider?"}]
             st.session_state.new_id = True
             st.session_state.validate_id = False
             st.session_state.chat_ready = False
