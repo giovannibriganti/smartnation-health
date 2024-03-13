@@ -2,10 +2,32 @@ import streamlit as st
 
 class Chatbot:
     def __init__(self):
-        st.set_page_config(page_icon="💬", page_title="SmartNation")
+        try:
+            st.set_page_config(page_icon="💬", page_title="SmartNation")
+        except:
+            pass
 
         if "chat_ready" not in st.session_state:
-                st.session_state["chat_ready"] = False
+            st.session_state["chat_ready"] = False
+        
+        else:
+            pass
+
+        if "validate_id" not in st.session_state:
+            st.session_state["validate_id"] = False
+        else:
+            pass
+        
+        if "new_id" not in st.session_state:
+            st.session_state["new_id"] = False
+        else:
+            pass
+
+        if "start" not in st.session_state:
+            st.session_state["start"] = True
+        
+        if 'patient_id' not in st.session_state:
+            st.session_state.text_input_value = ''
         
         if "messages" not in st.session_state:
             st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
@@ -15,7 +37,8 @@ class Chatbot:
         st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
         st.image("assets/default_view.png")
 
-    def create_chatbot(self):   
+    def create_chatbot(self):
+        st.markdown(f"## Vous êtes avec le patient avec le ID `{self.patient_id}`")
         for msg in st.session_state.messages:
             st.chat_message(msg["role"]).write(msg["content"])
         
@@ -68,26 +91,58 @@ class Chatbot:
         st.sidebar.divider()
 
         st.sidebar.header('Patient ID')
-        self.patient_id = st.sidebar.text_input('Patient ID', label_visibility='hidden')
+        
+        self.patient_id_placeholder = st.sidebar.empty()
+        self.patient_id = self.patient_id_placeholder.text_input('Patient ID', label_visibility='hidden')
+        
 
-        if self.patient_id:
-            st.sidebar.divider()
+        placeholder = st.sidebar.empty()
 
-            suggested_questions = [
-                "Montre-moi les antécédents médicaux?",
-                "Ce patient est-il diabétique?",
-                "Fournir des informations sur l'IMC et voir si le patient est en bonne santé?"
-            ]
+        if 'bt_validate' in st.session_state and st.session_state['bt_validate']:
+            st.session_state.validate_id = True
+            st.session_state.new_id = False
 
-            st.sidebar.subheader("Questions suggérées")
-            for question in suggested_questions:
-                if st.sidebar.button(question):
-                    self.send_question(question)
-            
-            st.session_state.chat_ready = True
-            
-        else:
+        if 'bt_new' in st.session_state and st.session_state['bt_new']:
+            st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
+            st.session_state.new_id = True
+            st.session_state.validate_id = False
             st.session_state.chat_ready = False
+        
+        col1, col2 = placeholder.columns(2)
+        with col1:
+            print("st.session_state.validate_id: ", st.session_state.validate_id)
+            validate_id = st.sidebar.button('Validerl\'ID', disabled=st.session_state.validate_id, key="bt_validate")
+        with col2:
+            print("st.session_state.new_id: ", st.session_state.new_id)
+            new_id = st.sidebar.button('Nouveau ID', disabled=st.session_state.new_id, key="bt_new")
+                
+        if validate_id or st.session_state.validate_id:
+            if self.patient_id:
+                st.session_state.validate_id = True
+                st.session_state.new_id = False
+                st.session_state.chat_ready = True
+
+                st.sidebar.divider()
+
+                suggested_questions = [
+                    "Montre-moi les antécédents médicaux?",
+                    "Ce patient est-il diabétique?",
+                    "Fournir des informations sur l'IMC et voir si le patient est en bonne santé?"
+                ]
+
+                st.sidebar.subheader("Questions suggérées")
+                for question in suggested_questions:
+                    if st.sidebar.button(question):
+                        self.send_question(question)
+        
+        if new_id or st.session_state.new_id:
+            st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
+            st.session_state.new_id = True
+            st.session_state.validate_id = False
+            st.session_state.chat_ready = False
+    
+    def update_session(self):
+        pass
 
     def run(self):
         self.create_sidebar()
