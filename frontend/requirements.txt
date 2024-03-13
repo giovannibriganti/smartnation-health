@@ -1,3 +1,7 @@
 streamlit==1.32.0
-PyMuPDF==1.23.26
 python-docx==1.1.0
+langchain==0.1.11
+pypdf==4.1.0
+docx2txt==0.8
+unstructured==0.6.3
+pytesseract==0.3.10
