@@ -1,0 +1,44 @@
+Objet : Lettre de Consultation Médicale
+
+Cher Monsieur Carbone,
+
+Je suis Paul Dumont, cardiologue, et je tiens à vous remercier d'avoir consulté notre clinique pour évaluer votre état de santé. La consultation récente a fourni des informations cruciales. Voici un résumé de notre rencontre :
+
+Antécédents Médicaux :
+Vous avez un antécédent de bradycardie, une fréquence cardiaque anormalement lente. Cela a été noté dans vos antécédents médicaux.
+
+Paramètres Vitaux :
+
+Tension Artérielle : 120/80 mmHg
+Fréquence Cardiaque : 45 bpm (bradycardie)
+Fréquence Respiratoire : 16 rpm
+Température : 37.0°C
+Médicaments Actuels :
+
+Aspirine - 81 mg, une fois par jour
+Atenolol - 25 mg, une fois par jour
+Diagnostics Préliminaires :
+
+Bradycardie Sinusale :
+La fréquence cardiaque inférieure à la normale peut être due à la maladie du sinus ou à d'autres causes cardiaques.
+Électrocardiogramme (ECG) :
+L'ECG a révélé des complexes QRS élargis et une onde T aplatie, caractéristiques de la bradycardie sinusale.
+Holter Cardiaque (24 heures) :
+Surveillance continue de la fréquence cardiaque, confirmant la bradycardie.
+Examens Cliniques :
+
+Examen Physique :
+Bradycardie évidente lors de l'examen cardiaque.
+Pas de signes évidents de malaise ou de vertiges.
+Échocardiographie :
+Aucune anomalie structurelle cardiaque majeure détectée.
+Suite à cette évaluation, nous recommandons un suivi médical régulier. Les options de traitement incluent l'ajustement des médicaments actuels ou l'exploration de stimulateurs cardiaques permanents, en fonction de l'évolution de votre condition.
+
+Veuillez planifier une prochaine consultation à la date indiquée ci-dessous.
+
+Prochaine Consultation : 24/03/2019, 17h45
+
+N'hésitez pas à nous contacter si vous avez des préoccupations ou des questions. Nous sommes déterminés à fournir des soins de qualité et à promouvoir votre bien-être.
+
+Cordialement,
+
