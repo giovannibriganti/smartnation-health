@@ -45,9 +45,9 @@ class Chatbot:
     def default_chatbot(self):
         st.title("Chatbot assistant de Vivalia")
         st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
-        
+        st.image("assets/default_view.png")
 
-        st_lottie("https://lottie.host/b542951f-9a58-4962-b803-7024c51306da/RwyQLtKCmZ.json", height=600, key='coding')
+        # st_lottie("https://lottie.host/b542951f-9a58-4962-b803-7024c51306da/RwyQLtKCmZ.json", height=600, key='coding')
 
     def create_chatbot(self):
         st.markdown(f"## Vous êtes avec le patient avec le ID `{self.patient_id}`")
