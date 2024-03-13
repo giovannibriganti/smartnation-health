@@ -1,6 +1,5 @@
 import streamlit as st
 
-# from streamlit_lottie import st_lottie
 import pathlib
 import sys
 
@@ -14,26 +13,19 @@ import answer_questions
 
 class Chatbot:
     def __init__(self):
-        try:
-            st.set_page_config(page_icon="💬", page_title="SmartNation")
-        except:
-            pass
+        st.set_page_config(page_icon="💬", page_title="SmartNation")
+
+        if "patient_id" not in st.session_state:
+            st.session_state.patient_id = ""
 
         if "chat_ready" not in st.session_state:
             st.session_state["chat_ready"] = False
 
-        else:
-            pass
+        if "disable_validate" not in st.session_state:
+            st.session_state["disable_validate"] = False
 
-        if "validate_id" not in st.session_state:
-            st.session_state["validate_id"] = False
-        else:
-            pass
-
-        if "new_id" not in st.session_state:
-            st.session_state["new_id"] = False
-        else:
-            pass
+        if "disable_new" not in st.session_state:
+            st.session_state["disable_new"] = False
 
         if "start" not in st.session_state:
             st.session_state["start"] = True
@@ -47,32 +39,24 @@ class Chatbot:
             ]
 
     def default_chatbot(self):
-        st.title("Chatbot assistant de Vivalia")
+        st.title("Assistant virtuel de Vivalia")
         st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
         st.image(str(ASSETS_PATH / "default_view.png"))
 
-        # st_lottie("https://lottie.host/b542951f-9a58-4962-b803-7024c51306da/RwyQLtKCmZ.json", height=600, key='coding')
-
     def create_chatbot(self):
-        st.markdown(f"## Vous êtes avec le patient avec le ID `{self.patient_id}`")
+        st.markdown(f"## Dossier patient:`{st.session_state.patient_id}`")
         for msg in st.session_state.messages:
             st.chat_message(msg["role"]).write(msg["content"])
 
         if prompt := st.chat_input():
             st.session_state.messages.append({"role": "user", "content": prompt})
             st.chat_message("user").write(prompt)
-            request = {
-                "question": prompt,
-                "chat_history": "",
-                "patient_id": self.patient_id,
-            }
 
             with st.spinner("Writing..."):
-                if self.patient_id:
-                    # response = self.dummy_response(request)
+                if st.session_state.patient_id:
                     response = {
                         "answer": answer_questions.answer_question(
-                            self.patient_id, prompt
+                            st.session_state.patient_id, prompt
                         )
                     }
                 else:
@@ -83,23 +67,12 @@ class Chatbot:
 
             st.chat_message("assistant").write(response["answer"])
 
-    def dummy_response(self, prompt):
-        response = {"answer": "Ceci est la réponse de l'API"}
-
-        return response
-
     def send_question(self, question):
         with st.spinner("Writing..."):
-            request = {
-                "question": question,
-                "chat_history": "",
-                "patient_id": self.patient_id,
-            }
-
-            if self.patient_id:
+            if st.session_state.patient_id:
                 response = {
                     "answer": answer_questions.answer_question(
-                        self.patient_id, question
+                        st.session_state.patient_id, question
                     )
                 }
 
@@ -120,51 +93,61 @@ class Chatbot:
 
         st.sidebar.divider()
 
-        st.sidebar.header("Patient ID")
-
-        self.patient_id_placeholder = st.sidebar.empty()
-        self.patient_id = self.patient_id_placeholder.text_input(
-            "Patient ID", label_visibility="hidden"
-        )
-
-        placeholder = st.sidebar.empty()
-
-        if "bt_validate" in st.session_state and st.session_state["bt_validate"]:
-            st.session_state.validate_id = True
-            st.session_state.new_id = False
+        if (
+            "bt_validate" in st.session_state
+            and st.session_state["bt_validate"]
+            and st.session_state.patient_id
+        ):
+            st.session_state.disable_validate = True
+            st.session_state.disable_new = False
 
         if "bt_new" in st.session_state and st.session_state["bt_new"]:
             st.session_state.messages = [
                 {"role": "assistant", "content": "Comment puis-je vous aider?"}
             ]
-            st.session_state.new_id = True
-            st.session_state.validate_id = False
+            st.session_state.disable_new = True
+            st.session_state.disable_validate = False
             st.session_state.chat_ready = False
+        elif "bt_new" not in st.session_state:
+            st.session_state.disable_new = True
+
+        st.sidebar.header("Patient ID")
+
+        self.patient_id_placeholder = st.sidebar.empty()
+        st.session_state.patient_id = self.patient_id_placeholder.text_input(
+            "Patient ID",
+            label_visibility="hidden",
+            disabled=st.session_state.disable_validate,
+        )
+
+        placeholder = st.sidebar.empty()
 
         col1, col2 = placeholder.columns(2)
         with col1:
-            print("st.session_state.validate_id: ", st.session_state.validate_id)
             validate_id = st.sidebar.button(
-                "Valider l'ID", disabled=st.session_state.validate_id, key="bt_validate"
+                "Valider l'ID",
+                disabled=st.session_state.disable_validate,
+                key="bt_validate",
             )
         with col2:
-            print("st.session_state.new_id: ", st.session_state.new_id)
             new_id = st.sidebar.button(
-                "Nouveau ID", disabled=st.session_state.new_id, key="bt_new"
+                "Changer de patient",
+                disabled=st.session_state.disable_new,
+                key="bt_new",
             )
 
-        if validate_id or st.session_state.validate_id:
-            if self.patient_id:
-                st.session_state.validate_id = True
-                st.session_state.new_id = False
+        if validate_id or st.session_state.disable_validate:
+            if st.session_state.patient_id:
+                st.session_state.disable_validate = True
+                st.session_state.disable_new = False
                 st.session_state.chat_ready = True
 
                 st.sidebar.divider()
 
                 suggested_questions = [
-                    "Montre-moi les antécédents médicaux?",
+                    "Quels sont les antécédents médicaux du patient?",
                     "Ce patient est-il diabétique?",
-                    "Fournir des informations sur l'IMC et voir si le patient est en bonne santé?",
+                    "Fournir des informations sur l'IMC et voir si le patient est en bonne santé",
                 ]
 
                 st.sidebar.subheader("Questions suggérées")
@@ -172,12 +155,12 @@ class Chatbot:
                     if st.sidebar.button(question):
                         self.send_question(question)
 
-        if new_id or st.session_state.new_id:
+        if new_id or st.session_state.disable_new:
             st.session_state.messages = [
-                {"role": "assistant", "content": "How can I help you?"}
+                {"role": "assistant", "content": "En quoi puis-je vous aider?"}
             ]
-            st.session_state.new_id = True
-            st.session_state.validate_id = False
+            st.session_state.disable_new = True
+            st.session_state.disable_validate = False
             st.session_state.chat_ready = False
 
     def update_session(self):
