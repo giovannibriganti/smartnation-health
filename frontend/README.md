@@ -1,11 +1,21 @@
 # smart-nation-hackathon
 
-Run the app to create the database:
+Install the requirements:
 ```bash
-streamlit run ui_feed_db.py
+pip install -r frontend/requirements.txt
 ```
 
-Run the chatbot
+Run the app to create the database:
 ```bash
-streamlit run ui_chat_db.py
+streamlit run frontend/ui_feed_db.py
+```
+
+Run the virtual assistant:
+```bash
+streamlit run frontend/ui_chat_db.py
+```
+
+Run the Snomed-CT explorer:
+```bash
+streamlit run frontend/ui_chat_db.py
 ```
