@@ -52,7 +52,7 @@ class FileProcessor:
         """
         loader = UnstructuredFileLoader(file_path)
         text = loader.load()
-        return text
+        return text[0].page_content
 
     def save_text(self, text: str, file: pathlib.Path, file_name: str) -> None:
         """Save text to a file
@@ -104,7 +104,8 @@ class FileProcessor:
                             text = self.extract_text_from_docx(file_path)
 
                         else:
-                            text = self.extract_text_from_unstructured(str(file_path))
+                            text = self.extract_text_from_unstructured(
+                                str(file_path))
 
                         self.save_text(text, patient_fp, file_path.name)
 
