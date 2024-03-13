@@ -23,7 +23,6 @@ import load_data
 class FeedDb:
     def __init__(self):
         self.save_path = ROOT_PATH / TXT_FOLDER
-        self.uploaded_files = []
 
         st.set_page_config(page_icon="📄", layout="wide", page_title="SmartNation")
 
@@ -33,12 +32,14 @@ class FeedDb:
             st.session_state.uploading = False
         if not "upload_id" in st.session_state:
             st.session_state.upload_id = 0
+        if not "uploaded_files" in st.session_state:
+            st.session_state.uploaded_files = []
 
     def save_uploaded_files(self):
 
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_dir = pathlib.Path(temp_dir)
-            for uploaded_file in self.uploaded_files:
+            for uploaded_file in st.session_state.uploaded_files:
 
                 subfolder = temp_dir / (str(uuid.uuid4()))
                 subfolder.mkdir(exist_ok=True, parents=True)
@@ -58,7 +59,7 @@ class FeedDb:
 
         if "upload_button" in st.session_state and st.session_state.upload_button:
             st.session_state.uploading = True
-            # st.session_state.upload_id += 1
+            st.session_state.upload_id += 1
 
         if st.session_state.upload_done:
             st.session_state.uploading = False
@@ -66,25 +67,27 @@ class FeedDb:
         logo_path = str(ASSETS_PATH / "logo_vivalia.svg")
         st.image(logo_path, width=200)
         st.title("Création de base de données")
-        uploaded_files = st.file_uploader(
+        uploaded_files_ = st.file_uploader(
             "Fournissez votre base de données",
             type=[".zip"],
             accept_multiple_files=True,
             disabled=st.session_state.uploading,
             key=f"file_uploader_{st.session_state.upload_id}",
         )
+        if uploaded_files_:
+            st.session_state.uploaded_files = uploaded_files_
 
         if st.button(
             "Générer la base de données",
-            disabled=(not uploaded_files) or st.session_state.uploading,
+            disabled=(not uploaded_files_) or st.session_state.uploading,
             key="upload_button",
         ):
-            self.uploaded_files = uploaded_files
             self.save_uploaded_files()
             st.session_state.upload_done = True
             st.rerun()
 
         if st.session_state.upload_done:
+            st.session_state.uploaded_files = []
             st.success("Base de donnée générée")
             st.session_state.upload_done = False
 

@@ -104,8 +104,7 @@ class FileProcessor:
                             text = self.extract_text_from_docx(file_path)
 
                         else:
-                            text = self.extract_text_from_unstructured(
-                                str(file_path))
+                            text = self.extract_text_from_unstructured(str(file_path))
 
                         self.save_text(text, patient_fp, file_path.name)
 
@@ -115,7 +114,7 @@ class FileProcessor:
                             "Error processing file: %s, %s", file_path.name, exec_info
                         )
                         st.error(
-                            f"Error processing file: {file_path.name}, {exec_info}"
+                            f"Le format du fichier '{file_path.name}' n'est pas supporté. La génération va continuer sans ce fichier."
                         )
 
             logging.info("Processed and saved patient: %s", patient_id)
