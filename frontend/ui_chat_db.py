@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_lottie import st_lottie
 
 class Chatbot:
     def __init__(self):
@@ -30,12 +31,14 @@ class Chatbot:
             st.session_state.text_input_value = ''
         
         if "messages" not in st.session_state:
-            st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
+            st.session_state["messages"] = [{"role": "assistant", "content": "Comment puis-je vous aider?"}]
 
     def default_chatbot(self):
         st.title("Chatbot assistant de Vivalia")
         st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
-        st.image("assets/default_view.png")
+        
+
+        st_lottie("https://lottie.host/b542951f-9a58-4962-b803-7024c51306da/RwyQLtKCmZ.json", height=600, key='coding')
 
     def create_chatbot(self):
         st.markdown(f"## Vous êtes avec le patient avec le ID `{self.patient_id}`")
@@ -53,7 +56,7 @@ class Chatbot:
                 if self.patient_id:
                     response = self.dummy_response(request)
                 else:
-                    response = {"answer": "Please enter the patient ID first"}
+                    response = {"answer": "Veuillez saisir l'ID du patient d'abord"}
             
             msg = {
                 "content": response["answer"],
@@ -84,8 +87,8 @@ class Chatbot:
         st.session_state.messages.append({"role": "assistant", "content": response["answer"]})
 
     def create_sidebar(self):
-        st.sidebar.image("assets/logo.png", width=200)
-        st.sidebar.title('Chat with Database')
+        st.sidebar.image("assets/logo_vivalia.svg", width=200)
+        st.sidebar.title('Discutez avec la base de données')
         st.sidebar.markdown('Veuillez saisir l\'ID patient et commencez à poser vos questions')
         
         st.sidebar.divider()
@@ -103,7 +106,7 @@ class Chatbot:
             st.session_state.new_id = False
 
         if 'bt_new' in st.session_state and st.session_state['bt_new']:
-            st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
+            st.session_state.messages = [{"role": "assistant", "content": "Comment puis-je vous aider?"}]
             st.session_state.new_id = True
             st.session_state.validate_id = False
             st.session_state.chat_ready = False
@@ -111,7 +114,7 @@ class Chatbot:
         col1, col2 = placeholder.columns(2)
         with col1:
             print("st.session_state.validate_id: ", st.session_state.validate_id)
-            validate_id = st.sidebar.button('Validerl\'ID', disabled=st.session_state.validate_id, key="bt_validate")
+            validate_id = st.sidebar.button('Valider l\'ID', disabled=st.session_state.validate_id, key="bt_validate")
         with col2:
             print("st.session_state.new_id: ", st.session_state.new_id)
             new_id = st.sidebar.button('Nouveau ID', disabled=st.session_state.new_id, key="bt_new")
