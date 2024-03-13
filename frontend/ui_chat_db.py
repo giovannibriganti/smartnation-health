@@ -14,9 +14,12 @@ class Chatbot:
         if prompt := st.chat_input():
             st.session_state.messages.append({"role": "user", "content": prompt})
             st.chat_message("user").write(prompt)
+            request = {"question": prompt, 
+                        "chat_history": "",
+                        "patient_id": self.patient_id}
 
             with st.spinner('Writing...'):
-                response = self.dummy_response({"question": prompt, "chat_history": ""})
+                response = self.dummy_response(request)
             
             msg = {
                 "content": response["answer"],
@@ -55,7 +58,7 @@ class Chatbot:
         st.sidebar.divider()
 
         st.sidebar.header('Patient ID')
-        self.patient_id = st.sidebar.text_input('')
+        self.patient_id = st.sidebar.text_input('Patient ID', label_visibility='hidden')
 
         st.sidebar.divider()
 
