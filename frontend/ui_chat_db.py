@@ -2,12 +2,20 @@ import streamlit as st
 
 class Chatbot:
     def __init__(self):
-        pass
+        st.set_page_config(page_icon="💬", page_title="SmartNation")
 
-    def create_chatbot(self):   
+        if "chat_ready" not in st.session_state:
+                st.session_state["chat_ready"] = False
+        
         if "messages" not in st.session_state:
             st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
-    
+
+    def default_chatbot(self):
+        st.title("Chatbot assistant de Vivalia")
+        st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
+        st.image("assets/default_view.png")
+
+    def create_chatbot(self):   
         for msg in st.session_state.messages:
             st.chat_message(msg["role"]).write(msg["content"])
         
@@ -19,7 +27,10 @@ class Chatbot:
                         "patient_id": self.patient_id}
 
             with st.spinner('Writing...'):
-                response = self.dummy_response(request)
+                if self.patient_id:
+                    response = self.dummy_response(request)
+                else:
+                    response = {"answer": "Please enter the patient ID first"}
             
             msg = {
                 "content": response["answer"],
@@ -30,52 +41,61 @@ class Chatbot:
             st.chat_message("assistant").write(response["answer"])
     
     def dummy_response(self, prompt):
-        try:
-            if self.patient_id:
-                response = {"answer": f'Patient with ID: {self.patient_id} is in process'}
-            else:
-                response = {"answer": "Please enter the patient ID first"}
+        response = {"answer": "Ceci est la réponse de l'API"}
         
-        except Exception as e:
-            print(e)
-            response = {"answer": "Please enter the patient ID first"}
-
         return response 
     
     def send_question(self, question):
         with st.spinner('Writing...'):
-            response = self.dummy_response({"question": question, "chat_history": ""})
+            request = {"question": question, 
+                        "chat_history": "",
+                        "patient_id": self.patient_id}
+            
+            if self.patient_id:
+                response = self.dummy_response(request)
+            
+            else:
+                response = {"answer": "Veuillez saisir l'ID du patient d'abord"}
         
         st.session_state.messages.append({"role": "user", "content": question})
         st.session_state.messages.append({"role": "assistant", "content": response["answer"]})
 
     def create_sidebar(self):
-        st.set_page_config(page_icon="💬", page_title="SmartNation")
         st.sidebar.image("assets/logo.png", width=200)
         st.sidebar.title('Chat with Database')
-        st.sidebar.markdown('Please enter the patient ID and start asking your questions')
-
+        st.sidebar.markdown('Veuillez saisir l\'ID patient et commencez à poser vos questions')
+        
         st.sidebar.divider()
 
         st.sidebar.header('Patient ID')
         self.patient_id = st.sidebar.text_input('Patient ID', label_visibility='hidden')
 
-        st.sidebar.divider()
+        if self.patient_id:
+            st.sidebar.divider()
 
-        suggested_questions = [
-            "What is the patient name?",
-            "When was the latest visit of this patient?",
-            "What is the latest treatment?"
-        ]
+            suggested_questions = [
+                "Montre-moi les antécédents médicaux?",
+                "Ce patient est-il diabétique?",
+                "Fournir des informations sur l'IMC et voir si le patient est en bonne santé?"
+            ]
 
-        st.sidebar.subheader("Suggested Questions")
-        for question in suggested_questions:
-            if st.sidebar.button(question):
-                self.send_question(question)
+            st.sidebar.subheader("Questions suggérées")
+            for question in suggested_questions:
+                if st.sidebar.button(question):
+                    self.send_question(question)
+            
+            st.session_state.chat_ready = True
+            
+        else:
+            st.session_state.chat_ready = False
 
     def run(self):
         self.create_sidebar()
-        self.create_chatbot()
+
+        if st.session_state.chat_ready:
+            self.create_chatbot()
+        else:
+            self.default_chatbot()
 
 
 if __name__ == "__main__":
