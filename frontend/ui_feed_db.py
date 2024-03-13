@@ -13,6 +13,7 @@ UPLOAD_FOLDER = "uploaded"
 TXT_FOLDER = "extracted"
 
 ROOT_PATH = pathlib.Path(__file__).parent
+ASSETS_PATH = ROOT_PATH / "assets"
 
 
 class FeedDb:
@@ -20,7 +21,8 @@ class FeedDb:
         self.save_path = ROOT_PATH / TXT_FOLDER
         self.uploaded_files = []
 
-        st.set_page_config(page_icon="📄", layout="wide", page_title="SmartNation")
+        st.set_page_config(page_icon="📄", layout="wide"
+                          , page_title="SmartNation")
 
         if not "upload_done" in st.session_state:
             st.session_state.upload_done = False
@@ -55,7 +57,8 @@ class FeedDb:
         if st.session_state.upload_done:
             st.session_state.uploading = False
 
-        st.image("assets/logo_vivalia.svg", width=200)
+        logo_path = str(ASSETS_PATH / "logo_vivalia.svg")
+        st.image(logo_path, width=200)
         st.title("Création de base de données")
         uploaded_files = st.file_uploader(
             "Fournissez votre base de données",
