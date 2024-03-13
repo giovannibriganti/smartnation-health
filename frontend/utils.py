@@ -175,3 +175,15 @@ def make_footer(st, assets_path: pathlib.Path, n_lines: int = 1):
                     st.image(logo_path,  use_column_width=True)
                 finally:
                     pass
+
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <p> Powered by <a href="https://vivalia.be">Vivalia</a>, <a href="https://bosa.belgium.be/fr/AIhackathon">BOSA</a>, <a href="https://ai4belgium.be/en/">AI4Belgium</a>, <a href="https://www.health.belgium.be/en">FPS Health</a>, <a href="https://web.umons.ac.be/">UMONS</a>, <a href="https://www.facmed.uliege.be/cms/c_3211623/fr/faculte-de-medecine">ULIÈGE</a>, <a href="https://nttdata.com">NTT DATA</a>, and <a href="https://web.umons.ac.be/isia/en/">ISIA Lab</a> </p>
+        </div>
+        
+        ---
+        
+        """,
+        unsafe_allow_html=True,
+    )
