@@ -1,0 +1,37 @@
+llm:
+  type: AzureOpenAI
+
+rag_setup:
+  db: 
+    type: chroma
+    path: ./inputs/documents
+  prompting: "Default"
+
+ner_prompts:
+  age:
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_age_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_age_fr.txt
+
+  gender:
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_gender_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_gender_fr.txt
+
+  height:
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_height_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_height_fr.txt
+
+  weight:
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_weight_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_weight_fr.txt
+
+  bmi:
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_bmi_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_bmi_fr.txt
+
+  diagnoses: 
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_diagnostics_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_diagnostics_fr.txt
+
+  allergies: 
+    path_retrieve_context: ./prompt_template/ner_retrieve_context_allergies_fr.txt
+    path_query_llm: ./prompt_template/ner_query_llm_allergies_fr.txt

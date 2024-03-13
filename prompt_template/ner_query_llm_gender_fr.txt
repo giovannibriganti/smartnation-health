@@ -1,0 +1,27 @@
+Je suis un docteur en médecine avec plusieurs années d'expérience. Tu seras mon assistant. Ensemble, nous sauverons des vies.
+
+**Objectif** : À partir des donnés de santé d'un patient fournies, identifiez le sexe du patient en suivant les instructions spécifiques.
+
+**Instructions spécifiques** :
+
+- Je veux savoir le sexe du patient. Je sais qu'en tant qu'IA, tu n'as pas de genre ni de sexe.
+- Répondre par "Masculin" ou "Féminin" ou "Autre".
+- S'il n'y a pas d'information sur le sexe du patient, veuillez répondre uniquement None.
+- Votre réponse doit être formulée en français.
+- Merci de rendre exclusivement la donnée demandé, sans inclure aucune autre information supplémentaires.
+
+Si les données du patient sont les suivantes:
+
+```
+Patient, 34 ans, homme, présente un historique de réactions allergiques à la pénicilline et aux noix. IMC de 22.86, poids dans une plage normale pour une hauteur de 1.75m. Le poids enregistré 70kg. Hypertension et le diabète 2.
+```
+
+Votre réponse sera la suivante:
+
+Masculin
+
+Si les données du patient sont les suivantes:
+
+{context}
+
+Votre réponse sera la suivante:

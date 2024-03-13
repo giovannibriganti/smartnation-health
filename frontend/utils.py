@@ -41,6 +41,7 @@ class FileProcessor:
 
         return text
 
+<<<<<<< HEAD
     def extract_text_from_csv(self, csv_path: pathlib.Path) -> str:
         """Extract text from a csv file
 
@@ -55,6 +56,8 @@ class FileProcessor:
 
         return text
 
+=======
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)
     def extract_text_from_unstructured(self, file_path: pathlib.Path) -> str:
         """Extract text from an unstructured file
 
@@ -116,11 +119,17 @@ class FileProcessor:
                     try:
                         if file_path.suffix.lower() == ".docx":
                             text = self.extract_text_from_docx(file_path)
+<<<<<<< HEAD
                         elif file_path.suffix.lower() == ".csv":
                             text = self.extract_text_from_csv(file_path)
                         else:
                             text = self.extract_text_from_unstructured(
                                 str(file_path))
+=======
+
+                        else:
+                            text = self.extract_text_from_unstructured(str(file_path))
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)
 
                         self.save_text(text, patient_fp, file_path.name)
 
@@ -136,6 +145,7 @@ class FileProcessor:
             logging.info("Processed and saved patient: %s", patient_id)
 
         return generated_files
+<<<<<<< HEAD
 
 
 def make_footer(st, assets_path: pathlib.Path, n_lines: int = 1):
@@ -187,3 +197,5 @@ def make_footer(st, assets_path: pathlib.Path, n_lines: int = 1):
         """,
         unsafe_allow_html=True,
     )
+=======
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)

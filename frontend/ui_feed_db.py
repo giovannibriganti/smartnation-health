@@ -7,7 +7,11 @@ import sys
 
 import streamlit as st
 
+<<<<<<< HEAD
 from utils import FileProcessor, make_footer
+=======
+from utils import FileProcessor
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)
 
 UPLOAD_FOLDER = "uploaded"
 TXT_FOLDER = "extracted"
@@ -94,7 +98,11 @@ class FeedDb:
             st.success("Base de donnée générée")
             st.session_state.upload_done = False
 
+<<<<<<< HEAD
         make_footer(st, ASSETS_PATH)
+=======
+        self.make_footer(ASSETS_PATH)
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)
 
     def extract_text(self, temp_dir):
         """Extract text from uploaded files and create markdown."""
@@ -103,12 +111,50 @@ class FeedDb:
         processor = FileProcessor(temp_dir)
         return processor.process_files(self.save_path)
 
+<<<<<<< HEAD
+=======
+    def make_footer(self, assets_path: pathlib.Path):
+        """Create the footer."""
+        st.markdown(
+            """
+            ---
+            <div style="text-align: center;">
+                <p> Vivalia's Hackathon </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        cols = st.columns(
+            5)  # Adjust the number of columns based on the number of images
+        images = [
+            ('logo_bosa.png', 100),
+            ('logo_ai4belgium.jpeg', 200),
+            ('logo_spf_fr_nl.svg', 200),
+            ('logo_vivalia.svg', 200),
+            ('logo_umons.svg', 200),
+            ('logo_uliege_faculte_medecine.png', 200),
+            ('logo_isia.svg', 200),
+            ('logo_nttdata.png', 200),
+        ]
+
+        # Display each image in a column
+        for index, column in enumerate(cols):
+            with column:
+                logo_path = str(assets_path / images[index][0])
+                logo_width = images[index][1]
+                st.image(logo_path, width=logo_width)
+
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)
     def run(self):
         """Run the app."""
         self.create_app()
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     logging.basicConfig(level=logging.INFO)
+=======
+    logging.basicConfig(level=logging.ERROR)
+>>>>>>> a5a3db7 (Code added for Smart Nation AI)
     app = FeedDb()
     app.run()

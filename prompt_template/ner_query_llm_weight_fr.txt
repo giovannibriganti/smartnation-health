@@ -1,0 +1,24 @@
+**Objectif** : À partir des donnés de santé d'un patient fournies, identifiez le poids du patient en suivant les instructions spécifiques.
+
+**Instructions spécifiques** :
+
+- Le poids doit être en kilogrammes.
+- S'il n'y a pas d'information sur le poids, veuillez répondre uniquement None.
+- Votre réponse doit être formulée en français.
+- Merci de rendre exclusivement la donnée demandé, sans inclure aucune autre information supplémentaires.
+
+Si les données du patient sont les suivantes:
+
+```
+Patient, 34 ans, présente un historique de réactions allergiques à la pénicilline et aux noix. IMC de 22.86, poids dans une plage normale pour une hauteur de 1.75m. Le poids enregistré 70kg. Hypertension et le diabète 2.
+```
+
+Votre réponse sera la suivante:
+
+70
+
+Si les données du patient sont les suivantes:
+
+{context}
+
+Votre réponse sera la suivante:

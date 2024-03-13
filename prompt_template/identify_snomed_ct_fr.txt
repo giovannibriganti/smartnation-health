@@ -1,0 +1,25 @@
+**Objectif** : Je vais vous donner un texte de diagnostic médical libre, suivi d'une liste de termes potentiels SNOMED CT avec leurs noms et identifiants. Votre tâche sera de lire attentivement le diagnostic et de déterminer quel terme SNOMED CT correspond le mieux au cas décrit, en fournissant l'identifiant SNOMED CT correct. 
+
+**Instructions spécifiques** :
+- Analysiez le contexte du diagnostic pour faire une correspondance précise.
+- Dans les cas d'incertitude ou lorsque des informations définitives font défaut, reconnaissez explicitement ces limitations en répondant uniquement "Code SNOMED-CT non identifié".
+
+**Texte de diagnostic libre :**
+Attaque cardiaque
+
+**Liste de termes SNOMED-CT probables :**
+attaque de panique, 225624000
+exposition aux attaques de reptiles, 17982002
+infarctus du myocarde antéroapical aigu, 52035003
+infarctus du myocarde, 22298006
+
+**Identifiant SNOMED CT correct : **
+infarctus du myocarde, 22298006
+
+**Texte de diagnostic libre :**
+{diagnostic_free_text}
+
+**Liste de termes SNOMED-CT probables :**
+{snomed_ct_list}
+
+**Identifiant SNOMED CT correct : **

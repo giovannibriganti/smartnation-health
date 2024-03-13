@@ -1,0 +1,13 @@
+llm:
+  type: AzureOpenAI
+
+rag_setup:
+  db: 
+    type: chroma
+    path: ./snomed/
+  prompting: "Default"
+
+snomed_prompts:
+  path_query_llm: ./prompt_template/identify_snomed_ct_fr.txt
+
+  
