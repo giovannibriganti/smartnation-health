@@ -1,5 +1,4 @@
 streamlit==1.32.0
-PyMuPDF==1.23.26
 python-docx==1.1.0
 langchain==0.1.11
 pypdf==4.1.0

@@ -2,6 +2,7 @@ import pathlib
 import tempfile
 import uuid
 import zipfile
+import logging
 
 import streamlit as st
 
@@ -56,7 +57,7 @@ class FeedDb:
 
         processor = FileProcessor(temp_dir)
         processor.process_files(self.save_path)
-        st.info("Markdown created successfully")
+        st.info("Text files created successfully")
 
     def run(self):
         """Run the app."""
@@ -64,5 +65,6 @@ class FeedDb:
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     app = FeedDb()
     app.run()

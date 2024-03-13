@@ -1,8 +1,8 @@
-import os
 import pathlib
-import fitz  # PyMuPDF
+import logging
 from docx import Document
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
+import streamlit as st
 
 
 class FileProcessor:
@@ -42,10 +42,9 @@ class FileProcessor:
         text = loader.load()[0].page_content
         return text
 
-    def save_text(self, text, save_path: pathlib.Path, file_name: str):
-        with save_path.open("a") as file:
-            file.write(f"<FILE>{file_name}</FILE>\n")
-            file.write(text)
+    def save_text(self, text, file, file_name: str):
+        file.write(f"<FILE>{file_name}</FILE>\n")
+        file.write(text)
 
     def process_files(self, save_path: pathlib.Path):
 
@@ -65,17 +64,25 @@ class FileProcessor:
 
         for patient_id, file_list in patient_dict.items():
             patient_file = save_path / f"{patient_id}.txt"
+            if patient_file.exists():
+                logging.warning(
+                    "Patient file exists: %s, overwriting", patient_file.name
+                )
 
-            for file_path in file_list:
-                if file_path.suffix == ".pdf":
-                    text = self.extract_text_from_pdf(file_path)
-                elif file_path.suffix == ".docx":
-                    text = self.extract_text_from_docx(file_path)
-                elif file_path.suffix == ".txt":
-                    text = self.extract_text_from_txt(file_path)
-                else:
-                    print(f"Unsupported file type: {file_path}")
-                    continue
+            with patient_file.open("w") as patient_fp:
 
-                self.save_text(text, patient_file, file_path.name)
-            print(f"Processed and saved patient: {patient_id}")
+                for file_path in file_list:
+                    if file_path.suffix == ".pdf":
+                        text = self.extract_text_from_pdf(file_path)
+                    elif file_path.suffix == ".docx":
+                        text = self.extract_text_from_docx(file_path)
+                    elif file_path.suffix == ".txt":
+                        text = self.extract_text_from_txt(file_path)
+                    else:
+                        logging.error("Unsupported file type: %s", file_path.name)
+                        st.error(f"Unsupported file type: {file_path.name}")
+                        continue
+
+                    self.save_text(text, patient_fp, file_path.name)
+
+            logging.info("Processed and saved patient: %s", patient_id)
