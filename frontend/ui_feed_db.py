@@ -1,40 +1,40 @@
-import os
-import streamlit as st
+import pathlib
+import tempfile
 import uuid
+import zipfile
+
+import streamlit as st
+
 from utils import FileProcessor
 
 UPLOAD_FOLDER = "uploaded"
 TXT_FOLDER = "extracted"
 
+ROOT_PATH = pathlib.Path(__file__).parent
+
 
 class FeedDb:
     def __init__(self):
-        if "folder_name" not in st.session_state:
-            st.session_state["folder_name"] = str(uuid.uuid4())
-
-        self.folder_name = st.session_state["folder_name"]
-        self.save_path = os.path.join(UPLOAD_FOLDER, self.folder_name)
-        self.extract_path = os.path.join(TXT_FOLDER, self.folder_name)
-        self.uploaded_local_paths = []
+        self.save_path = ROOT_PATH / TXT_FOLDER
 
     def save_uploaded_files(self):
-        if not os.path.exists(self.save_path):
-            os.makedirs(self.save_path)
-            os.makedirs(self.extract_path)
 
-        for uploaded_file in self.uploaded_files:
-            ext = os.path.splitext(uploaded_file.name)[-1]
-            file_name = os.path.join(self.save_path, str(uuid.uuid4()) + ext)
-            with open(
-                file_name,
-                "wb",
-            ) as f:
-                f.write(uploaded_file.getbuffer())
-                self.uploaded_local_paths.append(file_name)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_dir = pathlib.Path(temp_dir)
+            for uploaded_file in self.uploaded_files:
 
-        st.success(
-            f"Successfully saved {len(self.uploaded_files)} files to {self.save_path}"
-        )
+                subfolder = temp_dir / (str(uuid.uuid4()))
+                subfolder.mkdir(exist_ok=True, parents=True)
+
+                # extract uploaded zip file inf subfolder
+                with zipfile.ZipFile(uploaded_file, "r") as zip_ref:
+                    zip_ref.extractall(subfolder)
+
+            st.success(
+                f"Successfully saved {len(self.uploaded_files)} files to {str(temp_dir)}"
+            )
+
+            self.extract_text(temp_dir)
 
     def create_app(self):
         st.set_page_config(page_icon="📄", layout="wide", page_title="SmartNation")
@@ -42,22 +42,24 @@ class FeedDb:
         st.title("Feed Database")
         self.uploaded_files = st.file_uploader(
             "Upload your files",
-            type=["pdf", "txt", "docx", "doc"],
+            type=[".zip"],
             accept_multiple_files=True,
         )
 
         if self.uploaded_files:
             if st.button("Create Database"):
                 self.save_uploaded_files()
-                self.extract_text()
 
-    def extract_text(self):
-        if self.uploaded_local_paths:
-            processor = FileProcessor(self.uploaded_local_paths)
-            processor.process_files(self.extract_path)
-            st.info("Markdown created successfully")
+    def extract_text(self, temp_dir):
+        """Extract text from uploaded files and create markdown."""
+        self.save_path.mkdir(exist_ok=True, parents=True)
+
+        processor = FileProcessor(temp_dir)
+        processor.process_files(self.save_path)
+        st.info("Markdown created successfully")
 
     def run(self):
+        """Run the app."""
         self.create_app()
 
 
