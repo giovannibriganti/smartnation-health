@@ -41,6 +41,20 @@ class FileProcessor:
 
         return text
 
+    def extract_text_from_csv(self, csv_path: pathlib.Path) -> str:
+        """Extract text from a csv file
+
+        Args:
+            csv_path (pathlib.Path): Path to the docx file
+
+        Returns:
+            str: Extracted text
+        """
+        with csv_path.open("r") as fp:
+            text = fp.read()
+
+        return text
+
     def extract_text_from_unstructured(self, file_path: pathlib.Path) -> str:
         """Extract text from an unstructured file
 
@@ -102,7 +116,8 @@ class FileProcessor:
                     try:
                         if file_path.suffix.lower() == ".docx":
                             text = self.extract_text_from_docx(file_path)
-
+                        elif file_path.suffix.lower() == ".csv":
+                            text = self.extract_text_from_csv(file_path)
                         else:
                             text = self.extract_text_from_unstructured(str(file_path))
 
