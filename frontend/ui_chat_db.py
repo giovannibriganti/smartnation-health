@@ -1,5 +1,14 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
+import pathlib
+import sys
+
+ROOT_PATH = pathlib.Path(__file__).parent
+ASSETS_PATH = ROOT_PATH / "assets"
+
+BACKEND_PATH = ROOT_PATH.parent / "src"
+sys.path.append(str(BACKEND_PATH))
+import answer_questions
 
 class Chatbot:
     def __init__(self):
@@ -54,7 +63,8 @@ class Chatbot:
 
             with st.spinner('Writing...'):
                 if self.patient_id:
-                    response = self.dummy_response(request)
+                    # response = self.dummy_response(request)
+                    response = {"answer": answer_questions.answer_question(self.patient_id, prompt)}
                 else:
                     response = {"answer": "Veuillez saisir l'ID du patient d'abord"}
             
@@ -78,7 +88,7 @@ class Chatbot:
                         "patient_id": self.patient_id}
             
             if self.patient_id:
-                response = self.dummy_response(request)
+                response = {"answer": answer_questions.answer_question(self.patient_id, question)}
             
             else:
                 response = {"answer": "Veuillez saisir l'ID du patient d'abord"}
