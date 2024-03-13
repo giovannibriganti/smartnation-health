@@ -86,8 +86,11 @@ class FileProcessor:
 
             patient_dict[file_id].append(file)
 
+        generated_files = []
+
         for patient_id, file_list in patient_dict.items():
             patient_file = save_path / f"{patient_id}.txt"
+            generated_files.append(str(patient_file))
             if patient_file.exists():
                 logging.warning(
                     "Patient file exists: %s, overwriting", patient_file.name
@@ -96,17 +99,13 @@ class FileProcessor:
             with patient_file.open("w", encoding="utf-8") as patient_fp:
 
                 for file_path in file_list:
-                    print("file_path", file_path)
                     try:
                         if file_path.suffix.lower() == ".docx":
                             text = self.extract_text_from_docx(file_path)
 
                         else:
-                            text = self.extract_text_from_unstructured(
-                                file_path)
+                            text = self.extract_text_from_unstructured(str(file_path))
 
-                        print("save file", file_path.name,
-                              patient_fp, file_path.name)
                         self.save_text(text, patient_fp, file_path.name)
 
                     except Exception:
@@ -115,6 +114,9 @@ class FileProcessor:
                             "Error processing file: %s, %s", file_path.name, exec_info
                         )
                         st.error(
-                            f"Error processing file: {file_path.name}, {exec_info}")
+                            f"Error processing file: {file_path.name}, {exec_info}"
+                        )
 
             logging.info("Processed and saved patient: %s", patient_id)
+
+        return generated_files

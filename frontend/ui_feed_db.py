@@ -3,7 +3,7 @@ import tempfile
 import uuid
 import zipfile
 import logging
-import time
+import sys
 
 import streamlit as st
 
@@ -15,14 +15,17 @@ TXT_FOLDER = "extracted"
 ROOT_PATH = pathlib.Path(__file__).parent
 ASSETS_PATH = ROOT_PATH / "assets"
 
+BACKEND_PATH = ROOT_PATH.parent / "src"
+sys.path.append(str(BACKEND_PATH))
+import load_data
+
 
 class FeedDb:
     def __init__(self):
         self.save_path = ROOT_PATH / TXT_FOLDER
         self.uploaded_files = []
 
-        st.set_page_config(page_icon="📄", layout="wide"
-                          , page_title="SmartNation")
+        st.set_page_config(page_icon="📄", layout="wide", page_title="SmartNation")
 
         if not "upload_done" in st.session_state:
             st.session_state.upload_done = False
@@ -45,14 +48,17 @@ class FeedDb:
                     zip_ref.extractall(subfolder)
 
             with st.spinner("Fichiers téléchargés, conversion en cours"):
-                time.sleep(5)
-                self.extract_text(temp_dir)
+                generated_files = self.extract_text(temp_dir)
+
+        with st.spinner("Création de la base de données"):
+            for file_name in generated_files:
+                load_data.load_data(file_name)
 
     def create_app(self):
 
         if "upload_button" in st.session_state and st.session_state.upload_button:
             st.session_state.uploading = True
-            st.session_state.upload_id += 1
+            # st.session_state.upload_id += 1
 
         if st.session_state.upload_done:
             st.session_state.uploading = False
@@ -79,7 +85,7 @@ class FeedDb:
             st.rerun()
 
         if st.session_state.upload_done:
-            st.success("Fichiers patients générés")
+            st.success("Base de donnée générée")
             st.session_state.upload_done = False
 
     def extract_text(self, temp_dir):
@@ -87,7 +93,7 @@ class FeedDb:
         self.save_path.mkdir(exist_ok=True, parents=True)
 
         processor = FileProcessor(temp_dir)
-        processor.process_files(self.save_path)
+        return processor.process_files(self.save_path)
 
     def run(self):
         """Run the app."""
