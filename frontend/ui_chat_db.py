@@ -3,12 +3,14 @@ import streamlit as st
 import pathlib
 import sys
 
+from utils import make_footer
+
 ROOT_PATH = pathlib.Path(__file__).parent
 ASSETS_PATH = ROOT_PATH / "assets"
 
 BACKEND_PATH = ROOT_PATH.parent / "src"
 sys.path.append(str(BACKEND_PATH))
-import answer_questions
+import answer_questions  # noqa
 
 
 class Chatbot:
@@ -40,8 +42,9 @@ class Chatbot:
 
     def default_chatbot(self):
         st.title("Assistant virtuel de Vivalia")
-        st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
-        st.image(str(ASSETS_PATH / "default_view.png"))
+        st.markdown(
+            "Veuillez saisir l'ID patient et commencez à poser vos questions")
+        # st.image(str(ASSETS_PATH / "default_view.png"))
 
     def create_chatbot(self):
         st.markdown(f"## Dossier patient:`{st.session_state.patient_id}`")
@@ -49,7 +52,8 @@ class Chatbot:
             st.chat_message(msg["role"]).write(msg["content"])
 
         if prompt := st.chat_input():
-            st.session_state.messages.append({"role": "user", "content": prompt})
+            st.session_state.messages.append(
+                {"role": "user", "content": prompt})
             st.chat_message("user").write(prompt)
 
             with st.spinner("Writing..."):
@@ -60,7 +64,8 @@ class Chatbot:
                         )
                     }
                 else:
-                    response = {"answer": "Veuillez saisir l'ID du patient d'abord"}
+                    response = {
+                        "answer": "Veuillez saisir l'ID du patient d'abord"}
 
             msg = {"content": response["answer"], "role": "assistant"}
             st.session_state.messages.append(msg)
@@ -77,7 +82,8 @@ class Chatbot:
                 }
 
             else:
-                response = {"answer": "Veuillez saisir l'ID du patient d'abord"}
+                response = {
+                    "answer": "Veuillez saisir l'ID du patient d'abord"}
 
         st.session_state.messages.append({"role": "user", "content": question})
         st.session_state.messages.append(
@@ -173,6 +179,7 @@ class Chatbot:
             self.create_chatbot()
         else:
             self.default_chatbot()
+            make_footer(st, ASSETS_PATH, n_lines=2)
 
 
 if __name__ == "__main__":

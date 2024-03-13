@@ -138,7 +138,7 @@ class FileProcessor:
         return generated_files
 
 
-def make_footer(st, assets_path: pathlib.Path):
+def make_footer(st, assets_path: pathlib.Path, n_lines: int = 1):
     """Create the footer."""
     st.markdown(
         """
@@ -160,11 +160,18 @@ def make_footer(st, assets_path: pathlib.Path):
         'logo_isia.svg',
         'logo_nttdata.png',
     )
-    cols = st.columns(
-        len(images), gap='medium')  # Adjust the number of columns based on the number of images
+    n_columns = len(images) // n_lines
 
-    # Display each image in a column
-    for index, column in enumerate(cols):
-        with column:
-            logo_path = str(assets_path / images[index])
-            st.image(logo_path,  use_column_width=True)
+    for line in range(n_lines):
+        # Adjust the number of columns based on the number of images
+        cols = st.columns(n_columns, gap='medium')
+
+        # Display each image in a column
+        for index, column in enumerate(cols):
+            with column:
+                try:
+                    logo_path = str(
+                        assets_path / images[line * n_columns + index])
+                    st.image(logo_path,  use_column_width=True)
+                finally:
+                    pass
