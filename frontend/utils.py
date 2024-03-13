@@ -104,7 +104,8 @@ class FileProcessor:
                             text = self.extract_text_from_docx(file_path)
 
                         else:
-                            text = self.extract_text_from_unstructured(str(file_path))
+                            text = self.extract_text_from_unstructured(
+                                str(file_path))
 
                         self.save_text(text, patient_fp, file_path.name)
 
@@ -120,3 +121,35 @@ class FileProcessor:
             logging.info("Processed and saved patient: %s", patient_id)
 
         return generated_files
+
+
+def make_footer(st, assets_path: pathlib.Path):
+    """Create the footer."""
+    st.markdown(
+        """
+        ---
+        <div style="text-align: center;">
+            <p> Vivalia's Hackathon </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    images = (
+        'logo_bosa.png',
+        'logo_ai4belgium.svg',
+        'logo_spf_fr_nl.svg',
+        'logo_vivalia.svg',
+        'logo_umons.svg',
+        'logo_uliege_faculte_medecine.png',
+        'logo_isia.svg',
+        'logo_nttdata.png',
+    )
+    cols = st.columns(
+        len(images), gap='medium')  # Adjust the number of columns based on the number of images
+
+    # Display each image in a column
+    for index, column in enumerate(cols):
+        with column:
+            logo_path = str(assets_path / images[index])
+            st.image(logo_path,  use_column_width=True)
