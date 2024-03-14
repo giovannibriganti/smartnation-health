@@ -1,5 +1,0 @@
-chunking_strategy:
-  name: Recursive
-  params: 
-    chunk_size: 500
-    overlap: 50

@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-def answer_question(patient_id: str, question: str):
-    print(f"Question '{question}' about patient {patient_id}")
-    return "this is a response"
-=======
 from mondodb import get_from_mongodb
 from services.query_llm import query_llm
 
@@ -36,4 +31,3 @@ if __name__ == "__main__":
         patient_id="patient1",
         question="Quel est sont les allegies du patient?",
     )
->>>>>>> a5a3db7 (Code added for Smart Nation AI)

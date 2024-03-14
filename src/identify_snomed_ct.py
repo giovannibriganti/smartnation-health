@@ -6,5 +6,5 @@ if __name__ == "__main__":
         "attaque cardiaque",
         config_path="./pipeline_meta/snomed_ct_meta.yaml",
     )
-    # 104784, Heart dise
+    # 104784, Heart disease
     print(snomed_ct)

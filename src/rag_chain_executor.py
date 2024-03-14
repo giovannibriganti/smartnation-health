@@ -46,7 +46,10 @@ def format_llm_response(field: str, response: str):
     response = response.strip()
     if field in ["allergies", "diagnoses"]:
         try:
-            return json.loads(response)
+            formated_response = json.loads(response)
+            if not isinstance(formated_response, list):
+                formated_response = list(formated_response)
+            return formated_response
         except Exception:
             return list()
 

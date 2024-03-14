@@ -4,7 +4,7 @@ llm:
 rag_setup:
   db: 
     type: chroma
-    path: ./snomed/
+    path: ./snomed_fr_demo/
   prompting: "Default"
 
 snomed_prompts:

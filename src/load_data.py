@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-def load_data(file_path: str):
-    print(f"Load data: {file_path}")
-=======
 from rag_chain_executor import execute_rag_for_doc
 from data_cleaning_executor import accept_document_return_chunks
 from mondodb import load_to_mongodb
@@ -28,4 +24,3 @@ def load_data(file_path: str) -> None:
 
 if __name__ == "__main__":
     load_data(file_path="./dataset/patient6.txt")
->>>>>>> a5a3db7 (Code added for Smart Nation AI)

@@ -20,9 +20,15 @@ def query_llm(
     prompt = prompt_template.format(context=str(context), question=question)
 
     # LLM Text Generation
-    try:
+    llm_type = config.get("llm").get("type")
+
+    if llm_type == "OpenAI":
         response = llm.invoke(prompt)
-    except AttributeError:
+    elif llm_type == "AzureOpenAI":
+        response = llm.invoke(prompt).content
+    elif llm_type == "Mistral7B":
         response = llm(prompt)
-    print(response)
+    else:
+        raise NotImplementedError(f"LLM type not implemented. {llm_type=}")
+
     return response

@@ -1,8 +1,0 @@
-name: lowcode
-channels:
-  - defaults
-dependencies:
-  - python=3.10.13
-  - ipython
-  - git
-  - jupyter

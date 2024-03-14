@@ -4,10 +4,11 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 
 class Simple_RAG:
 
-    def __init__(self, patient_id: str, llm, config):
+    def __init__(self, patient_id: str, llm, config, top_k_context: int = 3):
         self.llm = llm
         self.patient_id = patient_id
         self.config = config
+        self.top_k_context = top_k_context
 
         if config.get("rag_setup").get("db"):
             self.set_database(type=config.get("rag_setup").get("db").get("type"))
@@ -30,10 +31,15 @@ class Simple_RAG:
         else:
             raise NotImplementedError
 
-    def set_retriever(self, k=3):
-        self.retriever = self.db.as_retriever(search_kwargs={"k": k})
+    def set_retriever(self):
+        self.retriever = self.db.as_retriever(search_kwargs={"k": self.top_k_context})
 
-    def invoke_rag(self, prompt_context: str, prompt_template_llm: str) -> str | None:
+    def invoke_rag(
+        self,
+        prompt_context: str,
+        prompt_template_llm: str,
+        free_text_diagnostic: str | None = None,
+    ) -> str | None:
         def parse_docs(docs):
             texts = ""
             for doc in docs:
@@ -42,11 +48,19 @@ class Simple_RAG:
 
         retrieved_contexts = self.retriever.get_relevant_documents(
             prompt_context,
-            top_k=3,
+            top_k=self.top_k_context,
         )
 
         context_text = parse_docs(retrieved_contexts)
-        prompt = prompt_template_llm.format(context=context_text)
+
+        if free_text_diagnostic is None:
+            prompt = prompt_template_llm.format(context=context_text)
+        else:
+            prompt = prompt_template_llm.format(
+                context=context_text,
+                free_text_diagnostic=free_text_diagnostic,
+            )
+
         if not context_text:
             return None
 
