@@ -100,7 +100,7 @@ def get_text_chunks_langchain(text_list, ids):
     return docs
 
 
-def snowmed_embedding(
+def snomed_embedding(
     snomed_descriptions_path: str,
     vector_db_path: str,
     nrows: str | None = None,
@@ -163,20 +163,20 @@ def snowmed_embedding(
 if __name__ == "__main__":
 
     # full snomed
-    # snowmed_embedding(
-    #     snomed_descriptions_path="./dataset/snowmed/french/sct2_Description_Snapshot-fr_BE1000172_20231115.txt",
-    #     vector_db_path="../../embeddings/snowmed_fr/",
+    # snomed_embedding(
+    #     snomed_descriptions_path="./dataset/snomed/french/sct2_Description_Snapshot-fr_BE1000172_20231115.txt",
+    #     vector_db_path="../../embeddings/snomed_fr/",
     # )
 
     # subset snomed for testing
-    # snowmed_embedding(
-    #     snomed_descriptions_path="./dataset/snowmed/french/sct2_Description_Snapshot-fr_BE1000172_20231115.txt",
-    #     vector_db_path="../../embeddings/snowmed_testing_fr/",
+    # snomed_embedding(
+    #     snomed_descriptions_path="./dataset/snomed/french/sct2_Description_Snapshot-fr_BE1000172_20231115.txt",
+    #     vector_db_path="../../embeddings/snomed_testing_fr/",
     #     nrows=2000,
     # )
 
-    snowmed_embedding(
-        snomed_descriptions_path="./dataset/snowmed/french/sct2_Description_Snapshot-fr_BE1000172_20231115.txt",
-        vector_db_path="../../embeddings/snowmed_fr_demo/",
+    snomed_embedding(
+        snomed_descriptions_path="./dataset/snomed/french/sct2_Description_Snapshot-fr_BE1000172_20231115.txt",
+        vector_db_path="./snomed_fr/",
         demo=True,
     )
