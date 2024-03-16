@@ -27,29 +27,41 @@ mongod --config /opt/homebrew/etc/mongod.conf --fork
 uvicorn nosql.app.app.main:app
 ```
 
-## 2. Web UI
+## 2. Install the requirements on your machine
+
+```bash
+pip install -r requirements.txt
+```
+
+## 3. Web UI
 
 ### Start web ui to upload documents
 
 ```bash
-streamlit run frontend/ui_feed_db.py
+nohup streamlit run frontend/ui_feed_db.py \
+--server.port=5000 --server.address=0.0.0.0 \
+--server.headless=true &
 ```
 
 ### Start web ui for chat interface
 
 ```bash
-streamlit run frontend/ui_chat_db.py
+nohup streamlit run frontend/ui_chat_db.py \
+--server.port=5001 --server.address=0.0.0.0 \
+--server.headless=true &
 ```
 
-## 3. Change the model for Mistral
+### Start natural language to SNOMED code converter interface
+
+```bash
+nohup streamlit run frontend/ui_snomed.py \
+--server.port=5002 --server.address=0.0.0.0 \
+--server.headless=true &
+```
+
+## 4. Change the model for Mistral
 
 ### Add support for Mistral, OpenAI and AzureOpenAI
 
 Download mistral 7B model or other model: `mistral-7b-instruct-v0.1.Q4_K_M.gguf`
-Change the model_file parameter in `src/rag_loader.py` to the model
-
-## 4. Install the requirements on your machine
-
-```bash
-pip install -r requirements.txt
-```
+Change the `model_file` parameter in `src\services\rag_loader.py` to the model
