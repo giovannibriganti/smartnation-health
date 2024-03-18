@@ -1,5 +1,5 @@
 llm:
-  type: AzureOpenAI
+  type: Mistral7B
 
 rag_setup:
   db: 

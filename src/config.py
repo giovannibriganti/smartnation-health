@@ -1,4 +1,5 @@
-AZURE_OPENAI_DEPLOYMENT_NAME = "chase-sm24-opi-dm"
-AZURE_OPENAI_API_VERSION = "2023-07-01-preview"
-AZURE_OPENAI_ENDPOINT = "https://chase-sn24-opi.openai.azure.com/"
+# To use cloud Azure OpenAI (if needed)
+AZURE_OPENAI_DEPLOYMENT_NAME = ""
+AZURE_OPENAI_API_VERSION = ""
+AZURE_OPENAI_ENDPOINT = ""
 AZURE_OPENAI_TEMPERATURE = 0.2

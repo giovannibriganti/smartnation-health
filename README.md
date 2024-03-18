@@ -1,6 +1,8 @@
 # Instructions to run the application on Mac
 
+# Author Details
 Author: Abhishek Sakhuja
+Organisation: NTT Data
 Date: 13th March 2024
 Location: BE
 
