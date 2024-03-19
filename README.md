@@ -76,7 +76,7 @@ If support for another model wants to be implemented, this option must be added 
 
 ### Use local mistral 
 Download mistral 7B model or other model: ```mistral-7b-instruct-v0.1.Q4_K_M.gguf```
-Change the model_file parameter in ```src/rag_loader.py``` to the model
+Change the model_file parameter in ```src/services/rag_loader.py``` to the model
 
 ## 5. Web UI:
 ### Start web ui to upload documents
