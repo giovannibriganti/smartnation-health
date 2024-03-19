@@ -3,7 +3,7 @@ name: Dependencies license checker
 on:
   push:
     branches:
-      - master
+      - main
 
   workflow_call:
 
