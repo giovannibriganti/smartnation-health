@@ -1,4 +1,5 @@
-﻿aiohttp==3.9.3
+setuptools
+aiohttp==3.9.3
 aiosignal==1.3.1
 annotated-types==0.6.0
 anyio==4.3.0
@@ -158,4 +159,3 @@ ctransformers
 langchain_experimental
 streamlit-lottie==0.0.5
 python-libmagic==0.3.0
-setuptools
