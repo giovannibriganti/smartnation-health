@@ -9,7 +9,7 @@ _Location: BE_
 
 
 # EaseMed
-The solution presented here shows a proof of concept of how to use the high capacity of LLMs to convert (unstructured) medical texts into structured data, increasing the usefulness of this data for further research and management tasks. To accomplish this, two RAG pipelines have been implemented, the first one aiming to extract key fields from the text document, saving each patient's record in MongoDB. Once this has been achieved, the second pipeline is in charge of feeding this information to a chat in which a doctor can consult the patient's information by simply using natural language.
+The solution presented here shows a proof of concept of how to use the high capacity of LLMs to convert (unstructured) medical texts into structured data, increasing the usefulness of this data for further research and management tasks. To accomplish this, two Retrieval-Augmented Generation (RAG) pipelines have been implemented, the first one aiming to extract key fields from the text document, saving each patient's record in MongoDB. Once this has been achieved, the second pipeline is in charge of feeding this information to a chat in which a doctor can consult the patient's information by simply using natural language.
 
 This repository contains the necessary code as well as other dependencies to run the EaseMed application.
 In this guide we will detail the different considerations and steps necessary to reproduce the final environment of the application.
