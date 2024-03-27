@@ -158,4 +158,4 @@ ctransformers
 langchain_experimental
 streamlit-lottie==0.0.5
 setuptools==45
-python-libmagic==0.3.0
+python-libmagic==0.1.0
