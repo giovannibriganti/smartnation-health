@@ -157,5 +157,4 @@ pytesseract==0.3.10
 ctransformers
 langchain_experimental
 streamlit-lottie==0.0.5
-python-libmagic==0.1.0
-setuptools==45
+cffi
