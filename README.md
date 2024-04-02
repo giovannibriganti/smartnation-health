@@ -58,7 +58,7 @@ Download MongoDB Community Edition from [MongoDB Community](https://www.mongodb.
 
 Due to the need to carry out a purely local deployment of the solution, Chroma DB on-premises was the choice of vector data base. To load the Snomed data into this database, from the root directory of this project we will have to execute the following command (bash/cmd):
 ```bash
-python  ./tmp/data_cleaning.py
+python  ./src/data_cleaning.py
 ```
 For demo purposes only a subset of records/terms are processed and their embeddings stored.
 
