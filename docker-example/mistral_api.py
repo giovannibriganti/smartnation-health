@@ -1,7 +1,19 @@
-import requests
 import json
+import requests
 
 def make_api_call():
+    """
+    Makes an API call to a local server endpoint and prints the response.
+
+    Sends a POST request to 'http://127.0.0.1:11434/api/generate' with JSON payload,
+    including a model and a prompt. Prints the response if the call is successful.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     url = 'http://127.0.0.1:11434/api/generate'
     payload = {
         "model": "mistral",
@@ -20,4 +32,3 @@ def make_api_call():
 
 if __name__ == "__main__":
     make_api_call()
-
