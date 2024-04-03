@@ -7,7 +7,7 @@ authors = ["Guilherme Madureira"]
 [tool.poetry.dependencies]
 python = "^3.10"
 uvicorn = "^0.23.2"
-fastapi = "^0.103.2"
+fastapi = "^0.110.1"
 pydantic = "^2.4.2"
 motor = "^3.3.1"
 
