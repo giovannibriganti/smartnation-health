@@ -11,8 +11,10 @@ class Patient(BaseModel):
         height (str, optional): The height of the patient. Defaults to None.
         weight (str, optional): The weight of the patient. Defaults to None.
         bmi (str, optional): The BMI (Body Mass Index) of the patient. Defaults to None.
-        diagnoses (list[str], optional): List of diagnoses associated with the patient. Defaults to an empty list.
-        allergies (list[str], optional): List of allergies associated with the patient. Defaults to an empty list.
+        diagnoses (list[str], optional): List of diagnoses associated with the patient. 
+            Defaults to an empty list.
+        allergies (list[str], optional): List of allergies associated with the patient. 
+            Defaults to an empty list.
     """
     patient_id: str
     age: str | None = None
