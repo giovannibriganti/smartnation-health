@@ -1,7 +1,7 @@
-import streamlit as st
-
 import pathlib
 import sys
+
+import streamlit as st
 
 from utils import make_footer
 
@@ -14,7 +14,20 @@ import answer_questions  # noqa
 
 
 class Chatbot:
+    """
+    A class representing a Streamlit-based chatbot interface.
+
+    The chatbot allows users to interact by providing patient IDs and asking questions,
+    with responses generated from a backend system.
+
+    Attributes:
+        None
+    """
+
     def __init__(self):
+        """
+        Initializes the Chatbot instance and sets up Streamlit page configuration and session state variables.
+        """
         st.set_page_config(page_icon="💬", page_title="SmartNation")
 
         if "patient_id" not in st.session_state:
@@ -41,11 +54,16 @@ class Chatbot:
             ]
 
     def default_chatbot(self):
+        """
+        Displays the default chatbot interface when the chat session is not ready.
+        """
         st.title("Assistant virtuel de Vivalia")
         st.markdown("Veuillez saisir l'ID patient et commencez à poser vos questions")
-        # st.image(str(ASSETS_PATH / "default_view.png"))
 
     def create_chatbot(self):
+        """
+        Creates the chatbot interface with patient information and chat messages.
+        """
         st.markdown(f"## Dossier patient:`{st.session_state.patient_id}`")
         for msg in st.session_state.messages:
             st.chat_message(msg["role"]).write(msg["content"])
@@ -70,6 +88,15 @@ class Chatbot:
             st.chat_message("assistant").write(response["answer"])
 
     def send_question(self, question):
+        """
+        Sends a question to the backend system and displays the response.
+
+        Args:
+            question (str): The question to send to the backend.
+
+        Returns:
+            None
+        """
         with st.spinner("Writing..."):
             if st.session_state.patient_id:
                 response = {
@@ -87,6 +114,9 @@ class Chatbot:
         )
 
     def create_sidebar(self):
+        """
+        Creates the sidebar for patient ID input and chat controls.
+        """
         st.sidebar.image(str(ASSETS_PATH / "logo_vivalia.svg"), width=200)
         st.sidebar.title("Discutez avec la base de données")
         st.sidebar.markdown(
@@ -166,9 +196,15 @@ class Chatbot:
             st.session_state.chat_ready = False
 
     def update_session(self):
+        """
+        Updates the session state variables.
+        """
         pass
 
     def run(self):
+        """
+        Runs the chatbot application.
+        """
         self.create_sidebar()
 
         if st.session_state.chat_ready:
