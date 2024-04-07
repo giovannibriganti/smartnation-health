@@ -10,7 +10,7 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 # from langchain_experimental.text_splitter import SemanticChunker
 # from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores.chroma import Chroma
 from langchain.docstore.document import Document
 # import numpy as np
 import pandas as pd
@@ -92,7 +92,6 @@ def accept_document_return_chunks(document: str, path: str):
 
 
 def get_text_chunks_langchain(text_list, ids):
-
     docs = [
         Document(page_content=x, metadata={"ids": id}) for x, id in zip(text_list, ids)
     ]
