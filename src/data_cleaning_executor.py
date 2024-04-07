@@ -21,7 +21,7 @@ def accept_document_return_chunks(document: str):
     elif document.split(".")[-1] == "txt":
         loader = TextLoader(document)
     elif document.split(".")[-1] == "json":
-        loader = JSONLoader(document)
+        loader = JSONLoader(document,'')
     elif document.split(".")[-1] == "html":
         loader = UnstructuredHTMLLoader(document)
     elif document.split(".")[-1] == "md":
