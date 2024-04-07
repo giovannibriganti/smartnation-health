@@ -8,7 +8,7 @@ from langchain_community.document_loaders import (
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 
 
 def accept_document_return_chunks(document: str):

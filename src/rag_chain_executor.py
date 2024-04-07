@@ -1,5 +1,6 @@
-import yaml
 import json
+import yaml
+
 from services.rag_chain_client import Simple_RAG
 from services.rag_loader import load_llm
 from patient_model import Patient
@@ -69,10 +70,9 @@ def format_llm_response(field: str, response: str):
                 formatted_response = list(formatted_response)
             return formatted_response
         except Exception:
-            return list()
+            return []
 
     elif response == "None":
         return None
 
     return response
-    

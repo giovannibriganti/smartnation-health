@@ -54,4 +54,3 @@ def get_from_mongodb(patient_id: str) -> Patient:
     results = db.patients.find_one({"patient_id": patient_id})
     close_db_client(db)
     return results
-
