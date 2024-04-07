@@ -1,42 +1,53 @@
-name: Pylint
+name: Dependencies license checker
 
 on:
   push:
     branches:
       - main
+
   workflow_call:
+
   pull_request:
     branches:
       - "**"
 
 concurrency:
-  group: linting-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.event.pull_request.number) || github.workflow_ref }}
+  group: licensing-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.event.pull_request.number) || github.workflow_ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
-    strategy:
-      max-parallel: 1
-      matrix:
-        os: [macos-11, macos-12, macos-13, macos-14, ubuntu-20.04, ubuntu-22.04]
-        python-version: ["3.10","3.11"]
-    runs-on: ${{ matrix.os }}
+  license_check:
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Checkout the code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+        python-version: '3.10'
+    - name: Get explicit and transitive dependencies
       run: |
-        if [ "${{ matrix.os }}" == "macos-11" ] || [ "${{ matrix.os }}" == "macos-12" ] || [ "${{ matrix.os }}" == "macos-13" ] || [ "${{ matrix.os }}" == "macos-14" ]; then
-          brew install libffi
-        else
-          sudo apt-get install -y libffi-dev python3-cffi python3-cffi
-        fi
+        sudo apt-get install libffi-dev python-cffi
         python -m pip install --upgrade pip
-        pip install pylint
         pip install -r requirements.txt
-    - name: Analysing the code with pylint
-      run: |
-        pylint **/*.py
+        pip freeze > requirements-all.txt
+    - name: Check python
+      id: license_check_report
+      uses: pilosus/action-pip-license-checker@v2
+      with:
+        requirements: 'requirements-all.txt'
+        fail: 'NetworkCopyleft'
+        exclude: '(?i)^(pylint|tbb|nvidia|aio[-_]*).*'
+        verbose: 1
+        github-token: ${{ secrets.OAUTH_TOKEN_GITHUB }}
+    - name: Save report
+      if: ${{ always() }}
+      run: echo "${{ steps.license_check_report.outputs.report }}" > license-report.json
+    - name: Upload artifact
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: license-report
+        path: license-report.json
