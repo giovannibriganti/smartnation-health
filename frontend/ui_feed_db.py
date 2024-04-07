@@ -6,9 +6,10 @@ import logging
 import sys
 
 import streamlit as st
+from utils import FileProcessor, make_footer
 import load_data  # noqa
 
-from utils import FileProcessor, make_footer
+
 
 UPLOAD_FOLDER = "uploaded"
 TXT_FOLDER = "extracted"
@@ -53,8 +54,8 @@ class FeedDb:
         """
         Saves uploaded files, extracts text from them, and creates a database.
 
-        Uses a temporary directory to extract uploaded zip files and processes them to generate text files.
-        Then, loads the data into the database.
+        Uses a temporary directory to extract uploaded zip files and processes them to generate 
+        text files. Then, loads the data into the database.
         """
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_dir = pathlib.Path(temp_dir)
