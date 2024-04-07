@@ -1,53 +1,42 @@
-name: Dependencies license checker
+name: Pylint
 
 on:
   push:
     branches:
       - main
-
   workflow_call:
-
   pull_request:
     branches:
       - "**"
 
 concurrency:
-  group: licensing-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.event.pull_request.number) || github.workflow_ref }}
+  group: linting-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.event.pull_request.number) || github.workflow_ref }}
   cancel-in-progress: true
 
 jobs:
-  license_check:
-    runs-on: ubuntu-20.04
+  build:
+    strategy:
+      max-parallel: 1
+      matrix:
+        os: [macos-11, ubuntu-20.04, ubuntu-22.04]
+        python-version: ["3.10","3.11","3.12"]
+    runs-on: ${{ matrix.os }}
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Setup Python
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
-    - name: Get explicit and transitive dependencies
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
       run: |
-        sudo apt-get install libffi-dev python-cffi
+        if [ "${{ matrix.os }}" == "macos-11" ]; then
+          brew install libffi
+        else
+          sudo apt-get install -y libffi-dev python3-cffi python3-cffi
+        fi
         python -m pip install --upgrade pip
+        pip install pylint
         pip install -r requirements.txt
-        pip freeze > requirements-all.txt
-    - name: Check python
-      id: license_check_report
-      uses: pilosus/action-pip-license-checker@v2
-      with:
-        requirements: 'requirements-all.txt'
-        fail: 'NetworkCopyleft'
-        exclude: '(?i)^(pylint|tbb|nvidia|aio[-_]*).*'
-        verbose: 1
-        github-token: ${{ secrets.OAUTH_TOKEN_GITHUB }}
-    - name: Save report
-      if: ${{ always() }}
-      run: echo "${{ steps.license_check_report.outputs.report }}" > license-report.json
-    - name: Upload artifact
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: license-report
-        path: license-report.json
+    - name: Analysing the code with pylint
+      run: |
+        pylint **/*.py
