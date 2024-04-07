@@ -30,7 +30,6 @@ class SnomedApp:
         st.image(str(ASSETS_PATH / "logo_vivalia.svg"), width=200)
         st.title("Veuillez saisir la description de votre patient")
         self.prompt = st.text_input('input', label_visibility='hidden', key='prompt')
-        
         if 'prompt' in st.session_state and self.prompt:
             self.dummy_call()
 
