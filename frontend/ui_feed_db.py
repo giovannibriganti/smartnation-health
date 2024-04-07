@@ -6,6 +6,7 @@ import logging
 import sys
 
 import streamlit as st
+import load_data  # noqa
 
 from utils import FileProcessor, make_footer
 
@@ -17,28 +18,44 @@ ASSETS_PATH = ROOT_PATH / "assets"
 
 BACKEND_PATH = ROOT_PATH.parent / "src"
 sys.path.append(str(BACKEND_PATH))
-import load_data  # noqa
 
 
 class FeedDb:
+    """
+    Class to create a Streamlit app for generating a database from uploaded files.
+
+    Attributes:
+        save_path (pathlib.Path): The path where the extracted text files will be saved.
+    """
+
     def __init__(self):
+        """
+        Initializes the FeedDb object.
+
+        Sets up Streamlit page configuration and session state variables.
+        """
         self.save_path = ROOT_PATH / TXT_FOLDER
 
         st.set_page_config(page_icon="📄", layout="wide", page_title="SmartNation")
 
-        if not "upload_done" in st.session_state:
+        if "upload_done" not in st.session_state:
             st.session_state.upload_done = False
 
-        if not "uploading" in st.session_state:
+        if "uploading" not in st.session_state:
             st.session_state.uploading = False
 
-        if not "upload_id" in st.session_state:
+        if "upload_id" not in st.session_state:
             st.session_state.upload_id = 0
-        if not "uploaded_files" in st.session_state:
+        if "uploaded_files" not in st.session_state:
             st.session_state.uploaded_files = []
 
     def save_uploaded_files(self):
+        """
+        Saves uploaded files, extracts text from them, and creates a database.
 
+        Uses a temporary directory to extract uploaded zip files and processes them to generate text files.
+        Then, loads the data into the database.
+        """
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_dir = pathlib.Path(temp_dir)
             for uploaded_file in st.session_state.uploaded_files:
@@ -46,7 +63,7 @@ class FeedDb:
                 subfolder = temp_dir / (str(uuid.uuid4()))
                 subfolder.mkdir(exist_ok=True, parents=True)
 
-                # extract uploaded zip file inf subfolder
+                # extract uploaded zip file in subfolder
                 with zipfile.ZipFile(uploaded_file, "r") as zip_ref:
                     zip_ref.extractall(subfolder)
 
@@ -58,7 +75,11 @@ class FeedDb:
                 load_data.load_data(file_name)
 
     def create_app(self):
+        """
+        Creates the Streamlit app interface.
 
+        Handles file uploading, database generation, and displays success message.
+        """
         if "upload_button" in st.session_state and st.session_state.upload_button:
             st.session_state.uploading = True
             st.session_state.upload_id += 1
@@ -96,14 +117,22 @@ class FeedDb:
         make_footer(st, ASSETS_PATH)
 
     def extract_text(self, temp_dir):
-        """Extract text from uploaded files and create markdown."""
+        """
+        Extracts text from uploaded files and creates markdown.
+
+        Args:
+            temp_dir (pathlib.Path): The temporary directory where uploaded files are extracted.
+
+        Returns:
+            List[str]: A list of file names of the extracted text files.
+        """
         self.save_path.mkdir(exist_ok=True, parents=True)
 
         processor = FileProcessor(temp_dir)
         return processor.process_files(self.save_path)
 
     def run(self):
-        """Run the app."""
+        """Runs the Streamlit app."""
         self.create_app()
 
 
