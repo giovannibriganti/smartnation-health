@@ -110,7 +110,7 @@ PyYAML==6.0.1
 pyzmq==25.1.2
 regex==2023.12.25
 requests==2.31.0
-requests-oauthlib==1.4.0
+requests-oauthlib==2.0.0
 rsa==4.9
 safetensors==0.4.2
 scikit-learn==1.4.1.post1
@@ -154,6 +154,6 @@ docx2txt==0.8
 unstructured==0.6.3
 pytesseract==0.3.10
 ctransformers==0.2.27 
-langchain_experimental
+langchain_experimental==0.0.53
 streamlit-lottie==0.0.5
 cffi==1.16.0

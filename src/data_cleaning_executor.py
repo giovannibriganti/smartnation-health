@@ -8,7 +8,7 @@ from langchain_community.document_loaders import (
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores.chroma import Chroma
 
 
 def accept_document_return_chunks(document: str):
@@ -21,7 +21,7 @@ def accept_document_return_chunks(document: str):
     elif document.split(".")[-1] == "txt":
         loader = TextLoader(document)
     elif document.split(".")[-1] == "json":
-        loader = JSONLoader(document)
+        loader = JSONLoader(document,'')
     elif document.split(".")[-1] == "html":
         loader = UnstructuredHTMLLoader(document)
     elif document.split(".")[-1] == "md":

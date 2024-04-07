@@ -36,8 +36,9 @@ def load_to_mongodb(patient: Patient) -> None:
         patient (Patient): The patient object to be loaded into the database.
     """
     db = create_db_client()
-    db.patients.insert_one(patient.dict()).inserted_id
+    inserted_id = db.patients.insert_one(patient.dict()).inserted_id
     close_db_client(db)
+    return inserted_id
 
 
 def get_from_mongodb(patient_id: str) -> Patient:
