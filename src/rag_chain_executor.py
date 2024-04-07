@@ -1,16 +1,26 @@
 import yaml
+import json
 from services.rag_chain_client import Simple_RAG
 from services.rag_loader import load_llm
 from patient_model import Patient
-import json
 
 
 def execute_rag_for_doc(patient_id: str, config_path: str) -> Patient:
+    """
+    Executes RAG for a patient document based on the provided configuration.
+
+    Args:
+        patient_id (str): The ID of the patient.
+        config_path (str): The path to the YAML configuration file.
+
+    Returns:
+        Patient: The patient object containing the extracted data.
+    """
     with open(config_path, "r") as file:
         # Load the dictionary from the YAML file
         config = yaml.safe_load(file)
 
-        # First load the 'llm' that you want to use, based in the documentation
+        # First load the 'llm' that you want to use, based on the documentation
         llm = load_llm(config.get("llm"))
 
         # Load the rag config for the application:
@@ -20,7 +30,7 @@ def execute_rag_for_doc(patient_id: str, config_path: str) -> Patient:
             config=config,
         )
 
-        ## Applications steps:
+        # Applications steps:
         execution_config = config.get("ner_prompts")
 
         # Iterate through the queries
@@ -31,25 +41,33 @@ def execute_rag_for_doc(patient_id: str, config_path: str) -> Patient:
             with open(value.get("path_query_llm"), "r") as f:
                 prompt_template_llm = f.read()
             response = simple_rag.invoke_rag(prompt_context, prompt_template_llm)
-            formated_response = format_llm_response(key, response)
-            patient_data_dict[key] = formated_response
+            formatted_response = format_llm_response(key, response)
+            patient_data_dict[key] = formatted_response
 
         return Patient(patient_id=patient_id, **patient_data_dict)
 
 
 def format_llm_response(field: str, response: str):
-    """Parses and formats LLM response."""
+    """
+    Parses and formats the LLM response based on the field.
 
+    Args:
+        field (str): The field for which the response is being formatted.
+        response (str): The response string from LLM.
+
+    Returns:
+        Union[list, str, None]: The formatted response.
+    """
     if response is None:
         return None
 
     response = response.strip()
     if field in ["allergies", "diagnoses"]:
         try:
-            formated_response = json.loads(response)
-            if not isinstance(formated_response, list):
-                formated_response = list(formated_response)
-            return formated_response
+            formatted_response = json.loads(response)
+            if not isinstance(formatted_response, list):
+                formatted_response = list(formatted_response)
+            return formatted_response
         except Exception:
             return list()
 
@@ -57,3 +75,4 @@ def format_llm_response(field: str, response: str):
         return None
 
     return response
+    

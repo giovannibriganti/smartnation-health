@@ -129,7 +129,8 @@ class FileProcessor:
                             "Error processing file: %s, %s", file_path.name, exec_info
                         )
                         st.error(
-                            f"Le format du fichier '{file_path.name}' n'est pas supporté. La génération va continuer sans ce fichier."
+                            f"Le format du fichier '{file_path.name}' n'est pas supporté. 
+                            La génération va continuer sans ce fichier."
                         )
 
             logging.info("Processed and saved patient: %s", patient_id)
@@ -177,7 +178,16 @@ def make_footer(st, assets_path: pathlib.Path, n_lines: int = 1):
     st.markdown(
         """
         <div style="text-align: center;">
-            <p> Powered by <a href="https://vivalia.be">Vivalia</a>, <a href="https://bosa.belgium.be/fr/AIhackathon">BOSA</a>, <a href="https://ai4belgium.be/en/">AI4Belgium</a>, <a href="https://www.health.belgium.be/en">FPS Health</a>, <a href="https://web.umons.ac.be/">UMONS</a>, <a href="https://www.facmed.uliege.be/cms/c_3211623/fr/faculte-de-medecine">ULIÈGE</a>, <a href="https://nttdata.com">NTT DATA</a>, and <a href="https://web.umons.ac.be/isia/en/">ISIA Lab</a> </p>
+            <p> Powered by 
+                <a href="https://vivalia.be">Vivalia</a>, 
+                <a href="https://bosa.belgium.be/fr/AIhackathon">BOSA</a>, 
+                <a href="https://ai4belgium.be/en/">AI4Belgium</a>, 
+                <a href="https://www.health.belgium.be/en">FPS Health</a>, 
+                <a href="https://web.umons.ac.be/">UMONS</a>, 
+                <a href="https://www.facmed.uliege.be/cms/c_3211623/fr/faculte-de-medecine">ULIÈGE</a>, 
+                <a href="https://nttdata.com">NTT DATA</a>, 
+                and <a href="https://web.umons.ac.be/isia/en/">ISIA Lab</a> 
+           </p>
         </div>
         
         ---

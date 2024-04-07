@@ -1,8 +1,8 @@
 import yaml
+import json
 from services.rag_chain_client_snomed import Snomed_Simple_RAG
 from services.rag_loader import load_llm
 from patient_model import Patient
-import json
 
 
 def identify_snomed_ct(free_text_diagnostic: str, config_path: str) -> str:
