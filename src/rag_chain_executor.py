@@ -76,4 +76,3 @@ def format_llm_response(field: str, response: str):
         return None
 
     return response
-    
