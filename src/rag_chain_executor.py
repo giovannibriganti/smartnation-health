@@ -57,3 +57,13 @@ def format_llm_response(field: str, response: str):
         return None
 
     return response
+
+    def read_file_contents(self, file_path):
+        with open(file_path, "r") as file:
+            return yaml.safe_load(file)
+
+    def load_llm_service(self, llm_name):
+        return load_llm(llm_name)
+
+    def create_simple_rag(self, patient_id, llm, config):
+        return Simple_RAG(patient_id=patient_id, llm=llm, config=config)
