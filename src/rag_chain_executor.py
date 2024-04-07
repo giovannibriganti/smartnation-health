@@ -1,8 +1,8 @@
 import yaml
+import json
 from services.rag_chain_client import Simple_RAG
 from services.rag_loader import load_llm
 from patient_model import Patient
-import json
 
 
 def execute_rag_for_doc(patient_id: str, config_path: str) -> Patient:
