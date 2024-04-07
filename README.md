@@ -1,3 +1,5 @@
+[![Pylint](https://github.com/giovannibriganti/smartnation-health/actions/workflows/pylint.yml/badge.svg)](https://github.com/giovannibriganti/smartnation-health/actions/workflows/pylint.yml)
+
 # Author
 _Author: Abhishek Sakhuja / Hector Lopez Perez_
 
