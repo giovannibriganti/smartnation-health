@@ -2,6 +2,7 @@ import pathlib
 import sys
 
 import streamlit as st
+import answer_questions  # noqa
 
 from utils import make_footer
 
@@ -10,7 +11,6 @@ ASSETS_PATH = ROOT_PATH / "assets"
 
 BACKEND_PATH = ROOT_PATH.parent / "src"
 sys.path.append(str(BACKEND_PATH))
-import answer_questions  # noqa
 
 
 class Chatbot:
@@ -199,7 +199,7 @@ class Chatbot:
         """
         Updates the session state variables.
         """
-        pass
+        # pass
 
     def run(self):
         """
