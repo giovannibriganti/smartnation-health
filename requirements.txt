@@ -154,6 +154,6 @@ docx2txt==0.8
 unstructured==0.6.3
 pytesseract==0.3.10
 ctransformers==0.2.27 
-langchain_experimental==0.0.56 
+langchain_experimental
 streamlit-lottie==0.0.5
 cffi==1.16.0
