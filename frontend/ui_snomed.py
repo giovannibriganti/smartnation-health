@@ -1,6 +1,6 @@
-import streamlit as st
 import pathlib
 import sys
+import streamlit as st
 
 ROOT_PATH = pathlib.Path(__file__).parent
 ASSETS_PATH = ROOT_PATH / "assets"
@@ -34,7 +34,6 @@ class SnomedApp:
         if 'prompt' in st.session_state and self.prompt:
             self.dummy_call()
 
-    
 if __name__ == "__main__":
     app = SnomedApp()
     app.create_app()
