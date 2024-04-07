@@ -129,7 +129,7 @@ class FileProcessor:
                             "Error processing file: %s, %s", file_path.name, exec_info
                         )
                         st.error(
-                            f"Le format du fichier '{file_path.name}' n'est pas supporté. 
+                            f"Le format du fichier '{file_path.name}' n'est pas supporté. \
                             La génération va continuer sans ce fichier."
                         )
 
