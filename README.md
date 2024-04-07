@@ -1,5 +1,6 @@
 [![CodeQL](https://github.com/giovannibriganti/smartnation-health/actions/workflows/codeql.yml/badge.svg)](https://github.com/giovannibriganti/smartnation-health/actions/workflows/codeql.yml)
 [![Pylint](https://github.com/giovannibriganti/smartnation-health/actions/workflows/pylint.yml/badge.svg)](https://github.com/giovannibriganti/smartnation-health/actions/workflows/pylint.yml)
+[![Dependencies license checker](https://github.com/giovannibriganti/smartnation-health/actions/workflows/licenses_check.yml/badge.svg)](https://github.com/giovannibriganti/smartnation-health/actions/workflows/licenses_check.yml)
 
 # Author
 _Author: Abhishek Sakhuja / Hector Lopez Perez_
