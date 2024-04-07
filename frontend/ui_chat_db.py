@@ -2,9 +2,8 @@ import pathlib
 import sys
 
 import streamlit as st
-import answer_questions  # noqa
-
 from utils import make_footer
+import answer_questions  # noqa
 
 ROOT_PATH = pathlib.Path(__file__).parent
 ASSETS_PATH = ROOT_PATH / "assets"
@@ -26,7 +25,8 @@ class Chatbot:
 
     def __init__(self):
         """
-        Initializes the Chatbot instance and sets up Streamlit page configuration and session state variables.
+        Initializes the Chatbot instance and sets up Streamlit page configuration 
+        and session state variables.
         """
         st.set_page_config(page_icon="💬", page_title="SmartNation")
 
