@@ -7,12 +7,12 @@ from langchain_community.document_loaders import (
 )
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
-from langchain_experimental.text_splitter import SemanticChunker
-from langchain_openai.embeddings import OpenAIEmbeddings
+# from langchain_experimental.text_splitter import SemanticChunker
+# from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
-import numpy as np
 from langchain.docstore.document import Document
+# import numpy as np
 import pandas as pd
 
 
