@@ -432,6 +432,7 @@ disable=raw-checker-failed,
         use-implicit-booleaness-not-comparison-to-string,
         use-implicit-booleaness-not-comparison-to-zero,
         C0114,
+        C0301,
         E0401, 
         R0801,
         W3101
