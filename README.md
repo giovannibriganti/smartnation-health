@@ -1,3 +1,4 @@
+[![CodeQL](https://github.com/giovannibriganti/smartnation-health/actions/workflows/codeql.yml/badge.svg)](https://github.com/giovannibriganti/smartnation-health/actions/workflows/codeql.yml)
 [![Pylint](https://github.com/giovannibriganti/smartnation-health/actions/workflows/pylint.yml/badge.svg)](https://github.com/giovannibriganti/smartnation-health/actions/workflows/pylint.yml)
 
 # Author
