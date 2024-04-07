@@ -56,7 +56,7 @@ Download MongoDB Community Edition from [MongoDB Community](https://www.mongodb.
 
 ## 3. Populate ChromaDB for Snomed data.
 
-Due to the need to carry out a purely local deployment of the solution, Chroma DB on-premises was the choice of vector data base. To load the Snomed data into this database, from the root directory of this project we will have to execute the following command (bash/cmd):
+Due to the need to carry out a purely local deployment of the solution, Chroma DB on-premises was the choice of vector data base. To load the [SNOMED-CT](https://www.health.belgium.be/fr/terminologie-et-systemes-de-codes-snomed-ct) data into this database, from the root directory of this project we will have to execute the following command (bash/cmd):
 ```bash
 python  ./src/data_cleaning.py
 ```
