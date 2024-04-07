@@ -70,7 +70,7 @@ def format_llm_response(field: str, response: str):
                 formatted_response = list(formatted_response)
             return formatted_response
         except Exception:
-            return list()
+            return []
 
     elif response == "None":
         return None
