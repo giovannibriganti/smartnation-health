@@ -126,5 +126,4 @@ class Snomed_Simple_RAG:
         else:
             raise NotImplementedError(f"LLM type not implemented. {llm_type=}")
 
-        return response
-        
+        return response      
