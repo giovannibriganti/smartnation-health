@@ -1,10 +1,30 @@
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores.chroma import Chroma
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
 
 class Simple_RAG:
+    """
+    Represents a Simple Retriever-Augmented Generation (RAG) model.
+
+    Attributes:
+        patient_id (str): The ID of the patient.
+        llm: The language model used for generation.
+        config: The configuration settings.
+        top_k_context (int): The number of top contexts to consider.
+
+    """
 
     def __init__(self, patient_id: str, llm, config, top_k_context: int = 3):
+        """
+        Initializes the Simple_RAG instance.
+
+        Args:
+            patient_id (str): The ID of the patient.
+            llm: The language model used for generation.
+            config: The configuration settings.
+            top_k_context (int, optional): The number of top contexts to consider. Defaults to 3.
+
+        """
         self.llm = llm
         self.patient_id = patient_id
         self.config = config
@@ -15,7 +35,16 @@ class Simple_RAG:
             self.set_retriever()
 
     def set_database(self, type):
+        """
+        Sets the database for retrieval.
 
+        Args:
+            type (str): The type of database.
+
+        Raises:
+            NotImplementedError: If the database type is not implemented.
+
+        """
         if self.patient_id is not None:
             path = f'{self.config.get("rag_setup").get("db").get("path")}/{self.patient_id}'
         else:
@@ -32,6 +61,7 @@ class Simple_RAG:
             raise NotImplementedError
 
     def set_retriever(self):
+        """Sets the retriever."""
         self.retriever = self.db.as_retriever(search_kwargs={"k": self.top_k_context})
 
     def invoke_rag(
@@ -40,6 +70,21 @@ class Simple_RAG:
         prompt_template_llm: str,
         free_text_diagnostic: str | None = None,
     ) -> str | None:
+        """
+        Invokes the RAG model for generation.
+
+        Args:
+            prompt_context (str): The context for the prompt.
+            prompt_template_llm (str): The template for the prompt for the language model.
+            free_text_diagnostic (str, optional): Free text diagnostic information. Defaults to None.
+
+        Returns:
+            str | None: The generated response from the language model.
+
+        Raises:
+            NotImplementedError: If the language model type is not implemented.
+
+        """
         def parse_docs(docs):
             texts = ""
             for doc in docs:
@@ -76,3 +121,4 @@ class Simple_RAG:
             raise NotImplementedError(f"LLM type not implemented. {llm_type=}")
 
         return response
+        
