@@ -1,4 +1,4 @@
-[MAIN]
+il[MAIN]
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
@@ -434,6 +434,7 @@ disable=raw-checker-failed,
         C0103,
         C0114,
         C0301,
+        C0303,
         C0412,
         E0401,
         E0602,
