@@ -1,6 +1,6 @@
 import yaml
 from ctransformers import AutoModelForCausalLM
-from langchain_openai import AzureChatOpenAI, AzureOpenAI, OpenAI
+from langchain_openai import AzureChatOpenAI, OpenAI
 from config import *
 
 
