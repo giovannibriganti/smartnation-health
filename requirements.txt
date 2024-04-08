@@ -124,7 +124,7 @@ stack-data==0.6.3
 starlette==0.37.2
 sympy==1.12
 tenacity==8.2.3
-threadpoolctl==3.3.0
+threadpoolctl==3.4.0
 tiktoken==0.6.0
 tokenizers==0.15.2
 tomli==2.0.1
