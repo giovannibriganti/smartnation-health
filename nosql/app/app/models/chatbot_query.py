@@ -44,4 +44,5 @@ class ChatbotAnswer(BaseModel):
     bmi: Optional[float]
     diagnoses: List[Diagnosis] = []
     allergies: List[str] = []
-    question: str    
+    question: str
+    
