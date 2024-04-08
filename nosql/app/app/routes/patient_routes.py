@@ -20,7 +20,7 @@ async def get_patient_info(id: str) -> Patient:
 
     """
     patient = await Patient.find_one(Patient.patient_id == id)
-    if(patient == None):
+    if patient is None:
         raise HTTPException(
             status_code=204,
             detail="Patient with provided ID not found"
@@ -55,7 +55,7 @@ async def chabot_query(query: ChatbotQuery):
 
     """
     patient = await Patient.find_one(Patient.patient_id == query.patient_id)
-    if (patient is None):
+    if patient is None:
         raise HTTPException(
             status_code=204,
             detail="Patient with provided ID not found"
