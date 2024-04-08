@@ -1,19 +1,38 @@
 import yaml
 from ctransformers import AutoModelForCausalLM
-from langchain_openai import AzureChatOpenAI
-from langchain_openai import AzureOpenAI
-from langchain_openai import OpenAI
+from langchain_openai import AzureChatOpenAI, AzureOpenAI, OpenAI
 from config import *
 
 
 def load_config(config_path: str) -> dict:
-    """Function to load a config file"""
+    """
+    Loads a YAML configuration file.
+
+    Args:
+        config_path (str): The path to the configuration file.
+
+    Returns:
+        dict: The loaded configuration settings.
+
+    """
     with open(config_path, "r") as file:
         return yaml.safe_load(file)
 
 
 def load_llm(llm_params: dict):
+    """
+    Loads a language model based on the provided parameters.
 
+    Args:
+        llm_params (dict): The parameters for the language model.
+
+    Returns:
+        LanguageModel: The loaded language model.
+
+    Raises:
+        NotImplementedError: If the language model type is not implemented.
+
+    """
     if llm_params.get("type") == "OpenAI":
         with open(".secrets/openapikey") as f:
             openaikey = f.read()
