@@ -25,8 +25,7 @@ async def get_patient_info(id: str) -> Patient:
             status_code=204,
             detail="Patient with provided ID not found"
         )
-    else:
-        return patient
+    return patient
 
 @router.post("/patients", response_description="New patient added", status_code=status.HTTP_201_CREATED)
 async def post_patient(patient: Patient) -> None:
