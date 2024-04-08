@@ -1,5 +1,5 @@
-from beanie import Document
 from typing import List, Optional
+from beanie import Document
 
 from nosql.app.app.models.diagnosis import Diagnosis
 
