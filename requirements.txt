@@ -92,7 +92,7 @@ pillow==10.3.0
 platformdirs==4.2.0
 posthog==3.5.0
 prompt-toolkit==3.0.43
-protobuf==4.25.3
+protobuf==5.26.1
 psutil==5.9.8
 pulsar-client==3.4.0
 pure-eval==0.2.2
