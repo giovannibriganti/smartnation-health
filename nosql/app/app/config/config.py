@@ -1,5 +1,5 @@
 # import secrets
-from pydantic.env_settings import BaseSettings
+from pydantic.main import BaseSettings
 
 
 class Settings(BaseSettings):
