@@ -12,7 +12,3 @@ updates:
       interval: "daily"
     labels:
       - "🤖 Dependencies"
-    groups:
-      python-packages:
-        patterns:
-          - "*"
