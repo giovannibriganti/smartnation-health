@@ -108,7 +108,7 @@ pyreadline3==3.4.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
 PyYAML==6.0.1
-pyzmq==25.1.2
+pyzmq==26.0.2
 regex==2023.12.25
 requests==2.31.0
 requests-oauthlib==2.0.0
