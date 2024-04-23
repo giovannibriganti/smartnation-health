@@ -85,7 +85,7 @@ opentelemetry-semantic-conventions==0.45b0
 opentelemetry-util-http==0.45b0
 orjson==3.10.0
 overrides==7.7.0
-pandas==2.0.0
+pandas==2.2.2
 packaging==23.2
 parso==0.8.3
 pillow==10.3.0
