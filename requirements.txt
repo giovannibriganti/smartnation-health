@@ -132,7 +132,7 @@ tomli==2.0.1
 torch==2.2.2
 tornado==6.4
 tqdm==4.66.2
-traitlets==5.14.2
+traitlets==5.14.3
 transformers==4.38.2
 typer==0.9.0
 typing-inspect==0.9.0
