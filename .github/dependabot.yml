@@ -12,3 +12,9 @@ updates:
       interval: "daily"
     labels:
       - "🤖 Dependencies"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "🤖 Dependencies"
