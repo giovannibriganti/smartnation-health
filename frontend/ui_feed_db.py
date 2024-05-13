@@ -7,8 +7,6 @@ import sys
 
 import streamlit as st
 from utils import FileProcessor, make_footer
-import load_data  # noqa
-
 
 
 UPLOAD_FOLDER = "uploaded"
@@ -19,6 +17,8 @@ ASSETS_PATH = ROOT_PATH / "assets"
 
 BACKEND_PATH = ROOT_PATH.parent / "src"
 sys.path.append(str(BACKEND_PATH))
+
+import load_data  # noqa
 
 
 class FeedDb:
@@ -54,7 +54,7 @@ class FeedDb:
         """
         Saves uploaded files, extracts text from them, and creates a database.
 
-        Uses a temporary directory to extract uploaded zip files and processes them to generate 
+        Uses a temporary directory to extract uploaded zip files and processes them to generate
         text files. Then, loads the data into the database.
         """
         with tempfile.TemporaryDirectory() as temp_dir:

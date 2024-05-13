@@ -21,7 +21,7 @@ def accept_document_return_chunks(document: str):
     elif document.split(".")[-1] == "txt":
         loader = TextLoader(document)
     elif document.split(".")[-1] == "json":
-        loader = JSONLoader(document,'')
+        loader = JSONLoader(document, "")
     elif document.split(".")[-1] == "html":
         loader = UnstructuredHTMLLoader(document)
     elif document.split(".")[-1] == "md":
@@ -36,7 +36,7 @@ def accept_document_return_chunks(document: str):
         unify_content += "\n" + page.page_content
 
     embedder = SentenceTransformerEmbeddings(
-        model_name="dangvantuan/sentence-camembert-large",
+        model_name="BAAI/bge-m3",
     )
 
     semantic_splitter = SemanticChunker(embedder)

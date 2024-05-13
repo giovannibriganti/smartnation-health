@@ -51,9 +51,7 @@ class Simple_RAG:
             path = f'{self.config.get("rag_setup").get("db").get("path")}'
 
         if type == "chroma":
-            embedding_function = SentenceTransformerEmbeddings(
-                model_name="dangvantuan/sentence-camembert-large"
-            )
+            embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-m3")
             self.db = Chroma(
                 persist_directory=path, embedding_function=embedding_function
             )
@@ -85,6 +83,7 @@ class Simple_RAG:
             NotImplementedError: If the language model type is not implemented.
 
         """
+
         def parse_docs(docs):
             texts = ""
             for doc in docs:
@@ -117,8 +116,9 @@ class Simple_RAG:
             response = self.llm.invoke(prompt).content
         elif llm_type == "Mistral7B":
             response = self.llm(prompt)
+        elif llm_type == "llama3":
+            response = self.llm.invoke(prompt)
         else:
             raise NotImplementedError(f"LLM type not implemented. {llm_type=}")
 
         return response
-        

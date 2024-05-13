@@ -1,6 +1,7 @@
 import yaml
 from ctransformers import AutoModelForCausalLM
 from langchain_openai import AzureChatOpenAI, OpenAI
+from langchain_community.llms import Ollama
 from config import *
 
 
@@ -44,6 +45,11 @@ def load_llm(llm_params: dict):
             "TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
             model_file="mistral-7b-instruct-v0.1.Q4_K_M.gguf",
             model_type="mistral",
+        )
+
+    elif llm_params.get("type") == "llama3":
+        return Ollama(
+            model="llama3",
         )
 
     elif llm_params.get("type") == "AzureOpenAI":

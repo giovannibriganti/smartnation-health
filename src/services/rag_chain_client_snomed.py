@@ -51,9 +51,7 @@ class Snomed_Simple_RAG:
             path = f'{self.config.get("rag_setup").get("db").get("path")}'
 
         if type == "chroma":
-            embedding_function = SentenceTransformerEmbeddings(
-                model_name="dangvantuan/sentence-camembert-large"
-            )
+            embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-m3")
             self.db = Chroma(
                 persist_directory=path, embedding_function=embedding_function
             )
@@ -85,6 +83,7 @@ class Snomed_Simple_RAG:
             NotImplementedError: If the language model type is not implemented.
 
         """
+
         def parse_docs(docs):
             texts = ""
             for doc in docs:
@@ -127,4 +126,3 @@ class Snomed_Simple_RAG:
             raise NotImplementedError(f"LLM type not implemented. {llm_type=}")
 
         return response
-        

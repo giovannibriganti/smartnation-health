@@ -41,6 +41,8 @@ def query_llm(
         response = llm.invoke(prompt)
     elif llm_type == "AzureOpenAI":
         response = llm.invoke(prompt).content
+    elif llm_type == "llama3":
+        response = llm.invoke(prompt)
     elif llm_type == "Mistral7B":
         response = llm(prompt)
     else:

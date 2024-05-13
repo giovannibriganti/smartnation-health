@@ -1,5 +1,5 @@
 llm:
-  type: Mistral7B
+  type: llama3
 
 rag_setup:
   db: 
