@@ -130,6 +130,7 @@ class Chatbot:
             "bt_validate" in st.session_state
             and st.session_state["bt_validate"]
             and st.session_state.patient_id
+            and answer_questions.patient_exists(st.session_state.patient_id)
         ):
             st.session_state.disable_validate = True
             st.session_state.disable_new = False
@@ -170,7 +171,9 @@ class Chatbot:
             )
 
         if validate_id or st.session_state.disable_validate:
-            if st.session_state.patient_id:
+            if st.session_state.patient_id and answer_questions.patient_exists(
+                st.session_state.patient_id
+            ):
                 st.session_state.disable_validate = True
                 st.session_state.disable_new = False
                 st.session_state.chat_ready = True
