@@ -24,4 +24,4 @@ jobs:
           update-pip: "true"
           ignore: "E501,F401,W503,W504"
           max-line-length: "125"
-          plugins: "flake8-bugbear"
+          plugins: "flake8-bugbear flake8-bandit"
