@@ -127,7 +127,7 @@ sympy==1.12
 tenacity==8.2.3
 threadpoolctl==3.3.0
 tiktoken==0.6.0
-tokenizers==0.15.2
+tokenizers==0.19.1
 tomli==2.0.1
 torch==2.2.2
 tornado==6.4
