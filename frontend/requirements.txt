@@ -13,6 +13,6 @@ pymongo
 langchain-community==0.0.34
 sentence-transformers==2.6.1
 sentencepiece==0.2.0
-chromadb==0.4.24
-requests>=2.32.0 # not directly required, pinned by Snyk to avoid a vulnerability
+chromadb==0.5.3
+requests>=2.32.3 # not directly required, pinned by Snyk to avoid a vulnerability
 urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
