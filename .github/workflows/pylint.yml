@@ -18,7 +18,7 @@ jobs:
     strategy:
       max-parallel: 10
       matrix:
-        os: [windows-2019, windows-2022, macos-11, macos-12, macos-13, macos-14, ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]
+        os: [windows-2019, windows-2022, macos-12, macos-13, ubuntu-20.04, ubuntu-22.04, ubuntu-24.04]
         python-version: ["3.10", "3.11"]
     runs-on: ${{ matrix.os }}
     steps:
@@ -29,7 +29,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
     - name: Install dependencies
-      if: ${{ matrix.os == 'macos-11' || matrix.os == 'macos-12' || matrix.os == 'macos-13' || matrix.os == 'macos-14' }}
+      if: ${{ matrix.os == 'macos-12' || matrix.os == 'macos-13' || matrix.os == 'macos-14' }}
       run: |
         brew install libffi
         python -m pip install --upgrade pip
@@ -40,15 +40,17 @@ jobs:
       run: |
         choco install -y openssl
         python -m pip install --upgrade pip
-        pip install pylint
-        pip install -r requirements.txt
+        python -m pip install uv
+        python -m uv pip install pylint
+        python -m uv pip install -r requirements.txt
     - name: Install dependencies on Ubuntu
       if: ${{ matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-24.04' }}
       run: |
         sudo apt-get update
         sudo apt-get install -y libffi-dev python3-cffi
         python -m pip install --upgrade pip
-        pip install pylint
-        pip install -r requirements.txt
+        python -m pip install uv
+        python -m uv pip install pylint
+        python -m uv pip install -r requirements.txt
     - name: Analysing the code with pylint
       run: pylint **/*.py
