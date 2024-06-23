@@ -54,10 +54,10 @@ jupyter_client==8.6.1
 jupyter_core==5.7.2
 kubernetes==29.0.0
 langchain==0.2.5
-langchain-community==0.0.34
+langchain-community==0.2.5
 langchain-core==0.2.9
-langchain-openai==0.0.8
-langchain-text-splitters==0.0.1
+langchain-openai==0.1.9
+langchain-text-splitters==0.2.1
 langsmith==0.1.23
 MarkupSafe==2.1.5
 marshmallow==3.21.1
