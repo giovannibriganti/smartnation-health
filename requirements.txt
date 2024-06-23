@@ -54,7 +54,7 @@ jupyter_client==8.6.1
 jupyter_core==5.7.2
 kubernetes==29.0.0
 langchain==0.1.16
-langchain-community==0.0.34
+langchain-community==0.2.5
 langchain-core==0.1.45
 langchain-openai==0.0.8
 langchain-text-splitters==0.0.1
@@ -114,7 +114,7 @@ requests==2.32.0
 requests-oauthlib==2.0.0
 rsa==4.9
 safetensors==0.4.3
-scikit-learn==1.4.2
+scikit-learn==1.5.0
 scipy==1.13.0
 sentence-transformers==2.5.1
 sentencepiece==0.2.0
@@ -155,6 +155,6 @@ docx2txt==0.8
 unstructured==0.6.3
 pytesseract==0.3.10
 ctransformers==0.2.27 
-langchain_experimental==0.0.57
+langchain_experimental==0.0.61
 streamlit-lottie==0.0.5
 cffi==1.16.0
