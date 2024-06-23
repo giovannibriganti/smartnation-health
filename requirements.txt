@@ -52,13 +52,14 @@ jsonpatch==1.33
 jsonpointer==2.4
 jupyter_client==8.6.1
 jupyter_core==5.7.2
-kubernetes==29.0.0
-langchain==0.1.16
-langchain-community==0.0.34
-langchain-core==0.1.45
-langchain-openai==0.0.8
-langchain-text-splitters==0.0.1
-langsmith==0.1.23
+kubernetes==30.1.0
+langchain==0.2.5
+langchain-community==0.2.5
+langchain-core==0.2.9
+langchain_experimental==0.0.61
+langchain-openai==0.1.9
+langchain-text-splitters==0.2.1
+langsmith==0.1.81
 MarkupSafe==2.1.5
 marshmallow==3.21.1
 matplotlib-inline==0.1.7
@@ -72,7 +73,7 @@ networkx==3.3
 numpy==1.26.4
 oauthlib==3.2.2
 onnxruntime==1.17.1
-openai==1.16.1
+openai==1.35.3
 opentelemetry-api==1.24.0
 opentelemetry-exporter-otlp-proto-common==1.24.0
 opentelemetry-exporter-otlp-proto-grpc==1.24.0
@@ -126,7 +127,7 @@ starlette==0.37.2
 sympy==1.12
 tenacity==8.2.3
 threadpoolctl==3.3.0
-tiktoken==0.6.0
+tiktoken==0.7.0
 tokenizers==0.19.1
 tomli==2.0.1
 torch==2.2.2
@@ -136,7 +137,7 @@ traitlets==5.14.3
 transformers==4.41.2
 typer==0.12.3
 typing-inspect==0.9.0
-typing_extensions==4.11.0
+typing_extensions==4.12.2
 urllib3==2.2.2
 uvicorn==0.29.0
 watchfiles==0.21.0
@@ -155,6 +156,5 @@ docx2txt==0.8
 unstructured==0.6.3
 pytesseract==0.3.10
 ctransformers==0.2.27 
-langchain_experimental==0.0.57
 streamlit-lottie==0.0.5
 cffi==1.16.0
