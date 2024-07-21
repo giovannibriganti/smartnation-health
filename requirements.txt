@@ -153,7 +153,7 @@ streamlit==1.32.0
 python-docx==1.1.0
 pypdf==4.1.0
 docx2txt==0.8
-unstructured==0.6.3
+unstructured==0.14.10
 pytesseract==0.3.10
 ctransformers==0.2.27 
 streamlit-lottie==0.0.5
