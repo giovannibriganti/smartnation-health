@@ -54,7 +54,7 @@ jupyter_client==8.6.1
 jupyter_core==5.7.2
 kubernetes==30.1.0
 langchain==0.2.7
-langchain-community==0.2.7
+langchain-community==0.2.11
 langchain-core==0.2.12
 langchain_experimental==0.0.61
 langchain-openai==0.1.13
