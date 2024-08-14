@@ -92,7 +92,7 @@ parso==0.8.4
 pillow==10.3.0
 platformdirs==4.2.1
 posthog==3.5.0
-prompt-toolkit==3.0.43
+prompt-toolkit==3.0.47
 protobuf==4.25.3
 psutil==5.9.8
 pulsar-client==3.5.0
