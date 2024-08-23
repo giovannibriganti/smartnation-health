@@ -12,7 +12,7 @@ build==1.1.1
 cachetools==5.3.3
 certifi>=2024.7.4
 charset-normalizer==3.3.2
-chroma-hnswlib==0.7.5
+chroma-hnswlib==0.7.6
 chromadb==0.5.5
 click==8.1.7
 colorama==0.4.6
