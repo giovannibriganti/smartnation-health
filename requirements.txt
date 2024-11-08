@@ -140,7 +140,7 @@ typing-inspect==0.9.0
 typing_extensions==4.12.2
 urllib3==2.2.2
 uvicorn==0.29.0
-watchfiles==0.21.0
+watchfiles==0.24.0
 wcwidth==0.2.13
 websocket-client==1.8.0
 websockets==12.0
