@@ -145,7 +145,7 @@ wcwidth==0.2.13
 websocket-client==1.8.0
 websockets==12.0
 wrapt==1.16.0
-yarl==1.9.4
+yarl==1.17.2
 zipp==3.19.1
 motor==3.4.0
 beanie==1.22.6
