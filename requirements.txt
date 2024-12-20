@@ -75,7 +75,7 @@ oauthlib==3.2.2
 onnxruntime==1.18.0
 openai==1.35.3
 opentelemetry-api==1.26.0
-opentelemetry-exporter-otlp-proto-common==1.26.0
+opentelemetry-exporter-otlp-proto-common==1.29.0
 opentelemetry-exporter-otlp-proto-grpc==1.26.0
 opentelemetry-instrumentation==0.49b2
 opentelemetry-instrumentation-asgi==0.47b0
