@@ -143,7 +143,7 @@ uvicorn==0.29.0
 watchfiles==1.0.0
 wcwidth==0.2.13
 websocket-client==1.8.0
-websockets==12.0
+websockets==14.1
 wrapt==1.16.0
 yarl==1.18.0
 zipp==3.19.1
