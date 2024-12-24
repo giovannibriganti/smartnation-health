@@ -97,7 +97,7 @@ protobuf==5.27.3
 psutil==5.9.8
 pulsar-client==3.5.0
 pure-eval==0.2.2
-pyasn1==0.6.0
+pyasn1==0.6.1
 pyasn1-modules==0.4.0
 pydantic==2.10.4
 pydantic_core==2.24.2
