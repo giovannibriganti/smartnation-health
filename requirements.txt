@@ -146,7 +146,7 @@ websocket-client==1.8.0
 websockets==14.1
 wrapt==1.16.0
 yarl==1.18.0
-zipp==3.19.1
+zipp==3.21.0
 motor==3.4.0
 beanie==1.28.0
 streamlit==1.39.0
