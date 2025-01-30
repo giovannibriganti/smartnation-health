@@ -27,7 +27,7 @@ exceptiongroup==1.2.1
 executing==2.1.0
 fastapi==0.111.0
 filelock==3.17.0
-flatbuffers==24.3.25
+flatbuffers==25.1.24
 frozenlist==1.5.0
 fsspec==2024.6.1
 google-auth==2.28.2
