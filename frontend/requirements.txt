@@ -1,4 +1,4 @@
-streamlit==1.39.0
+streamlit==1.42.1
 python-docx==1.1.2
 langchain==0.3.13
 pypdf==5.1.0
