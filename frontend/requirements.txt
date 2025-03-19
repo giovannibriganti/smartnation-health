@@ -7,7 +7,7 @@ unstructured==0.14.10
 pytesseract==0.3.10
 streamlit-lottie==0.0.5
 ctransformers
-langchain-openai==0.1.13
+langchain-openai==0.3.8
 langchain_experimental
 pymongo
 langchain-community==0.3.5
