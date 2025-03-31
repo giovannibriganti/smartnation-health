@@ -4,7 +4,7 @@ annotated-types==0.7.0
 anyio==4.8.0
 asgiref==3.7.2
 asttokens==3.0.0
-async-timeout==4.0.3
+async-timeout==5.0.1
 attrs==24.3.0
 backoff==2.2.1
 bcrypt==4.2.1
