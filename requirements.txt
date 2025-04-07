@@ -154,7 +154,7 @@ python-docx==1.1.2
 pypdf==5.1.0
 docx2txt==0.8
 unstructured==0.14.10
-pytesseract==0.3.10
+pytesseract==0.3.13
 ctransformers==0.2.27 
 streamlit-lottie==0.0.5
 cffi==1.17.1

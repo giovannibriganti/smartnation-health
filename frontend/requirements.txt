@@ -4,7 +4,7 @@ langchain==0.3.13
 pypdf==5.1.0
 docx2txt==0.8
 unstructured==0.14.10
-pytesseract==0.3.10
+pytesseract==0.3.13
 streamlit-lottie==0.0.5
 ctransformers
 langchain-openai==0.3.11
