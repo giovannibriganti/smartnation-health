@@ -1,6 +1,6 @@
 streamlit==1.43.2
 python-docx==1.1.2
-langchain==0.3.13
+langchain==0.3.24
 pypdf==5.1.0
 docx2txt==0.8
 unstructured==0.14.10
