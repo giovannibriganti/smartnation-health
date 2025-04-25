@@ -94,7 +94,7 @@ platformdirs==4.3.6
 posthog==3.7.4
 prompt-toolkit==3.0.48
 protobuf==5.29.2
-psutil==5.9.8
+psutil==7.0.0
 pulsar-client==3.5.0
 pure-eval==0.2.3
 pyasn1==0.6.1
