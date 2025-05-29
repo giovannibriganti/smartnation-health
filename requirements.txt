@@ -41,7 +41,7 @@ httpx==0.28.1
 huggingface-hub==0.26.3
 humanfriendly==10.0
 idna==3.10
-importlib-metadata==8.6.1
+importlib-metadata==8.7.0
 importlib_resources==6.5.2
 ipykernel==6.29.5
 ipython==8.26.0
