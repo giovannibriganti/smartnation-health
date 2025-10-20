@@ -57,7 +57,7 @@ langchain>=0.2.7
 langchain-community==0.3.21
 langchain-core>=0.2.12
 langchain_experimental==0.0.64
-langchain-openai==0.3.11
+langchain-openai==1.0.0
 langchain-text-splitters==0.2.1
 langsmith==0.3.3
 MarkupSafe==3.0.2
