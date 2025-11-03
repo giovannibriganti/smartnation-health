@@ -91,7 +91,7 @@ packaging==23.2
 parso==0.8.4
 pillow==10.3.0
 platformdirs==4.3.6
-posthog==3.7.4
+posthog==6.7.14
 prompt-toolkit==3.0.48
 protobuf==5.29.2
 psutil==7.0.0
