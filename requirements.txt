@@ -60,7 +60,7 @@ langchain_experimental==0.0.64
 langchain-openai==1.0.1
 langchain-text-splitters==0.2.1
 langsmith==0.3.3
-MarkupSafe==3.0.2
+MarkupSafe==3.0.3
 marshmallow==3.26.1
 matplotlib-inline==0.2.1
 mmh3==5.1.0
