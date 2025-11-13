@@ -151,7 +151,7 @@ motor==3.4.0
 beanie==2.0.0
 streamlit==1.43.2
 python-docx==1.2.0
-pypdf==5.5.0
+pypdf==6.2.0
 docx2txt==0.9
 unstructured==0.18.15
 pytesseract==0.3.13
