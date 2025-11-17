@@ -10,7 +10,7 @@ ctransformers
 langchain-openai==1.0.1
 langchain_experimental
 pymongo
-langchain-community==0.3.27
+langchain-community==0.4.1
 sentence-transformers==4.1.0
 sentencepiece==0.2.0
 chromadb==0.6.3
