@@ -157,7 +157,7 @@ unstructured==0.18.15
 pytesseract==0.3.13
 ctransformers==0.2.27 
 streamlit-lottie==0.0.5
-cffi==1.17.1
+cffi==2.0.0
 dnspython>=2.6.1 # not directly required, pinned by Snyk to avoid a vulnerability
 pyarrow>=14.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
 validators>=0.21.0 # not directly required, pinned by Snyk to avoid a vulnerability
