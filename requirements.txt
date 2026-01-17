@@ -40,7 +40,7 @@ httptools==0.7.1
 httpx==0.28.1
 huggingface-hub==0.26.3
 humanfriendly==10.0
-idna==3.10
+idna==3.11
 importlib-metadata==8.7.0
 importlib_resources==6.5.2
 ipykernel==7.1.0
