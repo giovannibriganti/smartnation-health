@@ -90,7 +90,7 @@ pandas==2.3.3
 packaging==23.2
 parso==0.8.4
 pillow==10.3.0
-platformdirs==4.3.6
+platformdirs==4.9.2
 posthog==6.7.14
 prompt-toolkit==3.0.48
 protobuf==6.33.5
