@@ -1,7 +1,7 @@
 streamlit==1.43.2
 python-docx==1.2.0
 langchain==1.2.6
-pypdf==6.6.2
+pypdf==6.7.1
 docx2txt==0.9
 unstructured==0.18.21
 pytesseract==0.3.13
