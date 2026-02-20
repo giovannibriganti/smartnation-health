@@ -70,7 +70,7 @@ multidict==6.3.2
 mypy-extensions==1.1.0
 nest-asyncio==1.6.0
 networkx==3.6.1
-numpy==2.2.2
+numpy==2.4.2
 oauthlib==3.3.1
 onnxruntime==1.23.2
 openai==1.85.0
