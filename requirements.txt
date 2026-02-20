@@ -9,7 +9,7 @@ attrs==25.4.0
 backoff==2.2.1
 bcrypt==4.2.1
 build==1.2.2.post1
-cachetools==5.3.3
+cachetools==7.0.1
 certifi>=2024.7.4
 charset-normalizer==3.4.4
 chroma-hnswlib==0.7.6
