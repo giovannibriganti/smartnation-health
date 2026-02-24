@@ -115,7 +115,7 @@ requests==2.32.5
 requests-oauthlib==2.0.0
 rsa==4.9.1
 safetensors==0.6.2
-scikit-learn==1.5.2
+scikit-learn==1.8.0
 scipy==1.16.3
 sentence-transformers==4.1.0
 sentencepiece==0.2.1
