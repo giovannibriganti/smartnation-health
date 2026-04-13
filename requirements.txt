@@ -95,7 +95,7 @@ posthog==7.9.4
 prompt-toolkit==3.0.52
 protobuf==6.33.5
 psutil==7.2.2
-pulsar-client==3.5.0
+pulsar-client==3.10.0
 pure-eval==0.2.3
 pyasn1==0.6.1
 pyasn1-modules==0.4.1
