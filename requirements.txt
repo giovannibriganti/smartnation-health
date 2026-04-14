@@ -11,7 +11,7 @@ bcrypt==4.2.1
 build==1.4.0
 cachetools==7.0.1
 certifi>=2024.7.4
-charset-normalizer==3.4.4
+charset-normalizer==3.4.7
 chroma-hnswlib==0.7.6
 chromadb==1.5.5
 click==8.1.8
