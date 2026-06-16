@@ -88,7 +88,7 @@ orjson==3.10.16
 overrides==7.7.0
 pandas==2.3.3
 packaging==26.0
-parso==0.8.4
+parso==0.8.7
 pillow==10.3.0
 platformdirs==4.9.6
 posthog==7.9.4
